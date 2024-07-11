@@ -1,7 +1,6 @@
 {
   "name": "@payloadcms/payload-plugin-template",
   "version": "0.0.0=1",
-  "type": "module",
   "homepage:": "https://payloadcms.com",
   "repository": "git@github.com:payloadcms/payload-plugin-template.git",
   "description": "Blank plugin template for Payload",
@@ -40,6 +39,7 @@
     "@payloadcms/ui": "3.0.0-beta.10",
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.11",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/react": "^18.2.78",
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@typescript-eslint/parser": "5.12.1",
@@ -57,5 +57,10 @@
     "react": "^18.0.0",
     "sharp": "^0.33.3",
     "typescript": "^5.4.2"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "openid-client": "^5.6.5"
   }
 }
