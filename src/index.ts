@@ -1,2 +1,2 @@
-export { samplePlugin } from './plugin'
+export { OauthPlugin } from './plugin'
 export * from './types'
