@@ -10,7 +10,8 @@ export function getClient(
   client: Client
 } {
   const callback_url = new URL(request.url as string)
-  callback_url.pathname = callback_url.pathname.replace(/authenticate.*$/, 'callback')
+  callback_url.pathname = callback_url.pathname.replace(/\/authorization\//, '/callback/')
+
   callback_url.host = request.headers.get('x-forwarded-host') || callback_url.host
   callback_url.search = ''
 

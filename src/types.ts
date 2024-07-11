@@ -38,7 +38,7 @@ export interface OauthPluginOptions {
   /* Enable or disable plugin
    * @default true
    */
-  enabled: boolean
+  enabled?: boolean
   /*
    * OAuth Providers array
    */
