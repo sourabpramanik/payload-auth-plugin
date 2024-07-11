@@ -1,9 +1,9 @@
 {
-  "name": "@payloadcms/payload-plugin-template",
+  "name": "@payloadcms/payload-plugin-oauth",
   "version": "0.0.0=1",
-  "homepage:": "https://payloadcms.com",
-  "repository": "git@github.com:payloadcms/payload-plugin-template.git",
-  "description": "Blank plugin template for Payload",
+  "homepage:": "https://github.com/sourabpramanik/plugin-payload-oauth",
+  "repository": "git@github.com:sourabpramanik/plugin-payload-oauth.git",
+  "description": "Oauth plugin for Payload CMS. Supports multiple providres",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "keywords": [
@@ -12,7 +12,8 @@
     "plugin",
     "typescript",
     "react",
-    "template"
+    "auth",
+    "oauth2.0"
   ],
   "scripts": {
     "dev": "cd dev && cross-env NODE_OPTIONS=--no-deprecation next dev",
@@ -26,7 +27,7 @@
     "clean": "rimraf dist && rimraf dev/yarn.lock",
     "prepublishOnly": "yarn clean && yarn build && cd dev && yarn test"
   },
-  "author": "dev@payloadcms.com",
+  "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "payload": "beta"
