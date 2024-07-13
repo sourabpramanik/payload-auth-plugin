@@ -19,18 +19,18 @@ export default buildConfig({
   },
   plugins: [
     OauthPlugin({
-      providers: [
-        GoogleAuthProvider({
+      providers: {
+        google: GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
           client_secret: process.env.GOOGLE_CLIENT_SECRET as string,
-          scope: 'email openid profile',
+          scope: 'openid email profile',
         }),
-        GitHubAuthProvider({
+        github: GitHubAuthProvider({
           client_id: process.env.GITHUB_CLIENT_ID as string,
           client_secret: process.env.GITHUB_CLIENT_SECRET as string,
-          scope: 'email openid profile',
+          scope: 'openid profile email',
         }),
-      ],
+      },
     }),
   ],
   db: mongooseAdapter({

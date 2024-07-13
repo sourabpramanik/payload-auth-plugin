@@ -16,11 +16,7 @@ function GoogleAuthProvider(config: GoogleAuthConfig): ProviderClientConfig {
     ...config,
     issuer,
     displayName: 'Google',
-    id: 'google',
-    params: {
-      ...(config.access_type && { access_type: config.access_type }),
-      ...config.params,
-    },
+    scope: 'openid email profile',
   }
 }
 

@@ -1,10 +1,10 @@
 import type { Plugin } from 'payload/config'
 import type { TextField } from 'payload/types'
-import type { OauthPluginOptions } from './types'
+import type { PluginOptions } from './types'
 import { generateOauthEndpoints } from './core'
 
 export const OauthPlugin =
-  (pluginOptions: OauthPluginOptions): Plugin =>
+  (pluginOptions: PluginOptions): Plugin =>
   incomingConfig => {
     const config = { ...incomingConfig }
 

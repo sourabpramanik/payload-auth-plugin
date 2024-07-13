@@ -17,9 +17,8 @@ export function getClient(
 
   const client = new clientConfig.issuer.Client({
     client_id: clientConfig.client_id,
-    client_secret: clientConfig.client_secret,
     redirect_uris: [callback_url.toString()],
-    response_types: ['code'],
+    response_types: ['id_token'],
   })
   return {
     client,

@@ -27,22 +27,17 @@ export interface ProviderConfig {
 export interface ProviderClientConfig extends ProviderConfig {
   issuer: Issuer
   displayName: string
-  id: string
 }
 
-export interface ProvidersMap {
-  [key: string]: ProviderClientConfig
-}
-
-export interface OauthPluginOptions {
+export interface PluginOptions {
   /* Enable or disable plugin
    * @default true
    */
   enabled?: boolean
   /*
-   * OAuth Providers array
+   * OAuth Provider
    */
-  providers: ProviderClientConfig[]
+  providers: Record<string, ProviderClientConfig>
   /*
    * Payload users collection
    */

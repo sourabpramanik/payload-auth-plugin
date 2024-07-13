@@ -8,6 +8,7 @@ const issuer = new Issuer({
   issuer: 'https://github.com',
   authorization_endpoint: 'https://github.com/login/oauth/authorize',
   token_endpoint: 'https://github.com/login/oauth/access_token',
+  userinfo_endpoint: 'https://api.github.com/user',
 })
 
 type GitHubAuthConfig = ProviderConfig & {
@@ -20,13 +21,7 @@ function GitHubAuthProvider(config: GitHubAuthConfig): ProviderClientConfig {
     ...config,
     issuer,
     displayName: 'GitHub',
-    id: 'github',
-    params: {
-      ...(config.access_type && { access_type: config.access_type }),
-      ...config.params,
-      allow_signup: 'true',
-      state: 'somethingverysecret',
-    },
+    scope: 'openid email profile',
   }
 }
 
