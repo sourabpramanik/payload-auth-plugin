@@ -28,13 +28,13 @@ export async function handleAuthorization(
   const cookieMaxage = new Date(Date.now() + 300 * 1000)
 
   cookies().set('payload_oid_state', state, {
-    maxAge: cookieMaxage,
+    expires: cookieMaxage,
     path: '/',
     httpOnly: true,
     secure: true,
   })
   cookies().set('payload_oid_nonce', nonce, {
-    maxAge: cookieMaxage,
+    expires: cookieMaxage,
     path: '/',
     httpOnly: true,
     secure: true,
@@ -48,7 +48,6 @@ export async function handleOauthCallback(
 ): Promise<Response> {
   const state = cookies().get('payload_oid_state')
   const nonce = cookies().get('payload_oid_nonce')
-  console.log(state)
 
   const { callback_url, client } = getClient(request, provider)
 
@@ -59,8 +58,8 @@ export async function handleOauthCallback(
     nonce: nonce?.value,
   })
 
-  if (!tokenset.access_token) {
-    throw Error('Missing access token')
+  if (!tokenset.id_token) {
+    throw Error('Missing id_token')
   }
 
   //  const userInfo = await client.userinfo(tokenset.access_token)
