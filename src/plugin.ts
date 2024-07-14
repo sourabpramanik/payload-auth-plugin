@@ -1,9 +1,9 @@
 import type { Plugin } from 'payload/config'
 import type { TextField } from 'payload/types'
 import type { PluginOptions } from './types'
-import { generateOauthEndpoints } from './core'
+import { generateEndpoints } from './core'
 
-export const OauthPlugin =
+export const AuthPlugin =
   (pluginOptions: PluginOptions): Plugin =>
   incomingConfig => {
     const config = { ...incomingConfig }
@@ -38,7 +38,7 @@ export const OauthPlugin =
     })
 
     // Add custom endpoints
-    config.endpoints = [...(config.endpoints || []), ...generateOauthEndpoints(pluginOptions)]
+    config.endpoints = [...(config.endpoints || []), ...generateEndpoints(pluginOptions)]
 
     return config
   }

@@ -1,12 +1,12 @@
 import type { PayloadRequest } from 'payload/types'
 import type { Endpoint } from 'payload/config'
 import type { PluginOptions } from '../types'
-import { handleAuthorization, handleOauthCallback } from './handlers'
+import { handleAuthorization, handleCallback } from './handlers'
 
 export const AUTHORIZATION_PATH = '/oauth2/authorization/'
 export const CALLBACK_PATH = '/oauth2/callback/'
 
-export function generateOauthEndpoints(pluginOptions: PluginOptions): Endpoint[] {
+export function generateEndpoints(pluginOptions: PluginOptions): Endpoint[] {
   return Object.keys(pluginOptions.providers).reduce(
     (customEndpoints: Endpoint[], providerId: string) => {
       customEndpoints.push({
@@ -17,9 +17,8 @@ export function generateOauthEndpoints(pluginOptions: PluginOptions): Endpoint[]
       })
       customEndpoints.push({
         path: `${CALLBACK_PATH}${providerId}`,
-        method: 'post',
-        handler: (req: PayloadRequest) =>
-          handleOauthCallback(req, pluginOptions.providers[providerId]),
+        method: 'get',
+        handler: (req: PayloadRequest) => handleCallback(req, pluginOptions.providers[providerId]),
       })
       return customEndpoints
     },

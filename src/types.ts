@@ -1,5 +1,5 @@
+import type { AuthorizationServer } from 'oauth4webapi'
 import type { ButtonHTMLAttributes } from 'react'
-import { type Issuer } from 'openid-client'
 
 export interface ProviderConfig {
   /*
@@ -25,7 +25,8 @@ export interface ProviderConfig {
 }
 
 export interface ProviderClientConfig extends ProviderConfig {
-  issuer: Issuer
+  authorization_server: AuthorizationServer
+  algorithm: 'oidc' | 'oauth2'
   displayName: string
 }
 

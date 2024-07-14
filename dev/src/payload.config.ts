@@ -5,7 +5,7 @@ import sharp from 'sharp'
 import { buildConfig } from 'payload/config'
 import Users from './collections/Users'
 import Examples from './collections/Examples'
-import { GitHubAuthProvider, GoogleAuthProvider, OauthPlugin } from '../../src/index'
+import { GitHubAuthProvider, GoogleAuthProvider, AuthPlugin } from '../../src/index'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
@@ -18,7 +18,7 @@ export default buildConfig({
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
   plugins: [
-    OauthPlugin({
+    AuthPlugin({
       providers: {
         google: GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
@@ -28,7 +28,7 @@ export default buildConfig({
         github: GitHubAuthProvider({
           client_id: process.env.GITHUB_CLIENT_ID as string,
           client_secret: process.env.GITHUB_CLIENT_SECRET as string,
-          scope: 'openid profile email',
+          scope: 'read:user user:email',
         }),
       },
     }),

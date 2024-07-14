@@ -1,27 +1,24 @@
-import { Issuer } from 'openid-client'
+import type * as oauth from 'oauth4webapi'
 import type { ProviderClientConfig, ProviderConfig } from '../types'
 
-type GitHubPrompt = 'select_account'
-type GitHubAccessType = 'offline' | 'online'
+const algorithm = 'oauth2'
 
-const issuer = new Issuer({
+const authorization_server: oauth.AuthorizationServer = {
   issuer: 'https://github.com',
   authorization_endpoint: 'https://github.com/login/oauth/authorize',
   token_endpoint: 'https://github.com/login/oauth/access_token',
   userinfo_endpoint: 'https://api.github.com/user',
-})
-
-type GitHubAuthConfig = ProviderConfig & {
-  prompt?: GitHubPrompt
-  access_type?: GitHubAccessType
 }
+
+type GitHubAuthConfig = ProviderConfig
 
 function GitHubAuthProvider(config: GitHubAuthConfig): ProviderClientConfig {
   return {
     ...config,
-    issuer,
+    authorization_server,
     displayName: 'GitHub',
-    scope: 'openid email profile',
+    algorithm,
+    scope: config.scope ?? 'openid email profile',
   }
 }
 

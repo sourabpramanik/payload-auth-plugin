@@ -1,21 +1,23 @@
-import { Issuer } from 'openid-client'
+import * as oauth from 'oauth4webapi'
 import type { ProviderClientConfig, ProviderConfig } from '../types'
 
-type GooglePrompt = 'none' | 'consent' | 'select_account'
-type GoogleAccessType = 'offline' | 'online'
+const issuer = new URL('https://accounts.google.com')
+const algorithm = 'oidc'
 
-const issuer = await Issuer.discover('https://accounts.google.com')
+const authorization_server = await oauth
+  .discoveryRequest(issuer, {
+    algorithm,
+  })
+  .then(response => oauth.processDiscoveryResponse(issuer, response))
 
-type GoogleAuthConfig = ProviderConfig & {
-  prompt?: GooglePrompt
-  access_type?: GoogleAccessType
-}
+type GoogleAuthConfig = ProviderConfig
 
 function GoogleAuthProvider(config: GoogleAuthConfig): ProviderClientConfig {
   return {
     ...config,
-    issuer,
+    authorization_server,
     displayName: 'Google',
+    algorithm,
     scope: 'openid email profile',
   }
 }
