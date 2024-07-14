@@ -1,7 +1,7 @@
 import type { Plugin } from 'payload/config'
-import type { TextField } from 'payload/types'
 import type { PluginOptions } from './types'
 import { generateEndpoints } from './core'
+import { generateAccountsCollection } from './core/collections'
 
 export const AuthPlugin =
   (pluginOptions: PluginOptions): Plugin =>
@@ -13,32 +13,21 @@ export const AuthPlugin =
       return config
     }
 
-    const collectionSlug = pluginOptions.userCollection?.slug || 'users'
-    const sub = pluginOptions.sub?.name || 'sub'
+    const accountsCollectionSlug = pluginOptions.accountsCollection?.slug ?? 'accounts'
+    const usersCollectionSlug = pluginOptions.usersCollectionSlug ?? 'users'
 
     config.admin = {
-      ...(config.admin || {}),
+      ...(config.admin ?? {}),
     }
 
-    // Configure collections
-    // Update Users collection with sub field if it doesn't exists
-    config.collections = (config.collections || []).map(collectionConfig => {
-      if (
-        collectionConfig.slug === collectionSlug &&
-        !collectionConfig.fields.some(field => (field as TextField).name === sub)
-      ) {
-        collectionConfig.fields.push({
-          name: sub,
-          type: 'text',
-          admin: { readOnly: true },
-          access: { update: () => false },
-        })
-      }
-      return collectionConfig
-    })
+    // Create accounts collection if doesn't exists
+    config.collections = [
+      generateAccountsCollection(accountsCollectionSlug, usersCollectionSlug),
+      ...(config.collections ?? []),
+    ]
 
     // Add custom endpoints
-    config.endpoints = [...(config.endpoints || []), ...generateEndpoints(pluginOptions)]
+    config.endpoints = [...(config.endpoints ?? []), ...generateEndpoints(pluginOptions)]
 
     return config
   }

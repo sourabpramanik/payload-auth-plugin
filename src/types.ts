@@ -37,27 +37,22 @@ export interface PluginOptions {
    */
   enabled?: boolean
   /*
-   * OAuth Provider
+   * Providers
    */
   providers: Record<string, ProviderClientConfig>
   /*
-   * Payload users collection
+   * Accounts are associated with user. A user can have multiple accounts but each account can belong to only one user.
+   * By default the accounts collection created by this plugin will use "accounts" slug.
+   * If there is already a collection with slug "accounts" then provide an alternate slug so that the plugin can generate a new collection using that slug.
    */
-  userCollection?: {
-    /*
-     * @default "users"
-     */
-    slug?: string
+  accountsCollection?: {
+    slug: string
   }
   /*
-   * Sub field will be created if it doesn't exists already. Or provide a field name.
+   * Users collection slug.
+   * @default "users"
    */
-  sub?: {
-    /*
-     * @default "sub"
-     */
-    name?: string
-  }
+  usersCollectionSlug?: string
   /*
    * Signin button position.
    * @default 'afterLogin'

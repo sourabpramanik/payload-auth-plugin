@@ -113,7 +113,7 @@ export async function handleCallback(
   session_url.host = request.headers.get('x-forwarded-host') || callback_url.host
   session_url.search = ''
 
-  cookies().set('__session-token', token_result.access_token as string, {
+  cookies().set('session-token', token_result.access_token as string, {
     expires: new Date(Date.now() + 100 * 1000),
     path: '/',
     httpOnly: true,

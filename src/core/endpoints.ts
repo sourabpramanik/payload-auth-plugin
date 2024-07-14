@@ -28,12 +28,12 @@ export function generateEndpoints(pluginOptions: PluginOptions): Endpoint[] {
         handler: (req: PayloadRequest) =>
           createSession(
             req,
-            pluginOptions.userCollection?.slug ?? 'users',
-            pluginOptions.sub?.name ?? 'sub',
+            pluginOptions.accountsCollection?.slug ?? 'accounts',
+            pluginOptions.usersCollectionSlug ?? 'users',
             pluginOptions.providers[providerId],
             {
-              successRedirect: pluginOptions.successRedirect ?? '/admin',
-              failureRedirect: pluginOptions.failureRedirect ?? '/admin/login',
+              successPath: pluginOptions.successRedirect ?? '/admin',
+              failurePath: pluginOptions.failureRedirect ?? '/admin/login',
             },
           ),
       })
