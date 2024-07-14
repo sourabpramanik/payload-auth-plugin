@@ -19,6 +19,7 @@ function GitHubAuthProvider(config: GitHubAuthConfig): ProviderClientConfig {
     displayName: 'GitHub',
     algorithm,
     scope: config.scope ?? 'openid email profile',
+    provider_sub: 'id',
   }
 }
 

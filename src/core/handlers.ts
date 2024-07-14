@@ -98,17 +98,26 @@ export async function handleCallback(
     throw new Error('Failed to authenticate')
   }
 
-  const result = await oauth[
+  const token_result = await oauth[
     provider.algorithm === 'oauth2'
       ? 'processAuthorizationCodeOAuth2Response'
       : 'processAuthorizationCodeOpenIDResponse'
   ](provider.authorization_server, client, response)
 
-  if (oauth.isOAuth2Error(result)) {
+  if (oauth.isOAuth2Error(token_result)) {
     throw new Error('Invalid response or algorithm')
   }
 
-  return Response.json({
-    message: 'yooo damn',
+  const session_url = new URL(request.url as string)
+  session_url.pathname = session_url.pathname.replace(/\/callback\//, '/session/')
+  session_url.host = request.headers.get('x-forwarded-host') || callback_url.host
+  session_url.search = ''
+
+  cookies().set('__session-token', token_result.access_token as string, {
+    expires: new Date(Date.now() + 100 * 1000),
+    path: '/',
+    httpOnly: true,
   })
+
+  return Response.redirect(session_url.toString())
 }

@@ -27,6 +27,7 @@ export interface ProviderConfig {
 export interface ProviderClientConfig extends ProviderConfig {
   authorization_server: AuthorizationServer
   algorithm: 'oidc' | 'oauth2'
+  provider_sub?: string
   displayName: string
 }
 
