@@ -14,11 +14,11 @@ type GoogleAuthConfig = ProviderConfig
 
 function GoogleAuthProvider(config: GoogleAuthConfig): ProviderClientConfig {
   return {
+    scope: 'openid email profile',
     ...config,
     authorization_server,
     displayName: 'Google',
     algorithm,
-    scope: 'openid email profile',
   }
 }
 

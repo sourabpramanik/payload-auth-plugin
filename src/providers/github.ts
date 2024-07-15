@@ -14,11 +14,11 @@ type GitHubAuthConfig = ProviderConfig
 
 function GitHubAuthProvider(config: GitHubAuthConfig): ProviderClientConfig {
   return {
+    scope: 'openid email profile',
     ...config,
     authorization_server,
     displayName: 'GitHub',
     algorithm,
-    scope: config.scope ?? 'openid email profile',
     provider_sub: 'id',
   }
 }
