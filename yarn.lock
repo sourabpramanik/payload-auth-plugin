@@ -970,15 +970,34 @@
     qs "^6.9.1"
     react-transition-group "^4.4.2"
 
+"@faceless-ui/modal@3.0.0-beta.2":
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@faceless-ui/modal/-/modal-3.0.0-beta.2.tgz#67ea3ab9814715fabea4a3fbe338e25ff3656f96"
+  integrity sha512-UmXvz7Iw3KMO4Pm3llZczU4uc5pPQDb6rdqwoBvYDFgWvkraOAHKx0HxSZgwqQvqOhn8joEFBfFp6/Do2562ow==
+  dependencies:
+    body-scroll-lock "4.0.0-beta.0"
+    focus-trap "7.5.4"
+    react-transition-group "4.4.5"
+
 "@faceless-ui/scroll-info@1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@faceless-ui/scroll-info/-/scroll-info-1.3.0.tgz#4d9f76afa4c004018697424f77f8bc362ccaae08"
   integrity sha512-X+doJMzQqyVGpwV/YgXUAalNWepP2W8ThgZspKZLFG43zTYLVTU17BYCjjY+ggKuA3b0W3JyXZ2M8f247AdmHw==
 
+"@faceless-ui/scroll-info@2.0.0-beta.0":
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@faceless-ui/scroll-info/-/scroll-info-2.0.0-beta.0.tgz#ac2d86a8b221f7a8d75452b9f0024da94e1d18bf"
+  integrity sha512-pUBhQP8vduA7rVndNsjhaCcds1BykA/Q4iV23JWijU6ZFL/M3Fm9P3ypDS+0VVxolqemNhw8S3FXPwZGgjH4Rw==
+
 "@faceless-ui/window-info@2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@faceless-ui/window-info/-/window-info-2.1.2.tgz#75d72f5e1384490754c7b910649e2e0b6c8e428e"
   integrity sha512-IvZM6mLWFRin904180115Y6BgsvAN9M5uCMJEHhiQgTgzDMiYVtUww7GlWRsvemubMRF6c9Q+j79qW7uPPuMBg==
+
+"@faceless-ui/window-info@3.0.0-beta.0":
+  version "3.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@faceless-ui/window-info/-/window-info-3.0.0-beta.0.tgz#628c2c46b2fdddd17916153ca41c4dbe1340c1cf"
+  integrity sha512-Qs8xRA+fl4sU2aFVe9xawxfi5TVZ9VTPuhdQpx9aSv7U5a2F0AXwT61lJfnaJ9Flm8tOcxzq67p8cVZsXNCVeQ==
 
 "@floating-ui/core@^1.6.0":
   version "1.6.4"
@@ -1765,6 +1784,13 @@
   resolved "https://registry.yarnpkg.com/@payloadcms/translations/-/translations-3.0.0-beta.10.tgz#6fefca53409fcca2d991206dc2de15275ce64026"
   integrity sha512-gi9rGeM3+zAD6zSzeHSZNV2XfnyZn6c775+lB8RFnAvhZhC+/3GW88lDgcT+uTQU23jJKX/fIGGj++PVBbtwSw==
 
+"@payloadcms/translations@3.0.0-beta.63":
+  version "3.0.0-beta.63"
+  resolved "https://registry.yarnpkg.com/@payloadcms/translations/-/translations-3.0.0-beta.63.tgz#15af65efc36f49878998e48267957670ee781615"
+  integrity sha512-P2pVlMuQ0gjv1bfG8aV/qLjmneq9hT4GjLLuq89vVJOw7p98GA1j/i8stIBskT70J4Ehi/dSMGjKd96ErGv6eg==
+  dependencies:
+    date-fns "3.3.1"
+
 "@payloadcms/ui@3.0.0-beta.10":
   version "3.0.0-beta.10"
   resolved "https://registry.yarnpkg.com/@payloadcms/ui/-/ui-3.0.0-beta.10.tgz#271470ca7e09d81ba3752072768ee2e2f6148a8f"
@@ -1792,6 +1818,34 @@
     react-toastify "10.0.4"
     use-context-selector "1.4.1"
     uuid "9.0.1"
+
+"@payloadcms/ui@^3.0.0-beta.63":
+  version "3.0.0-beta.63"
+  resolved "https://registry.yarnpkg.com/@payloadcms/ui/-/ui-3.0.0-beta.63.tgz#f7408ac4468c23c65ad1fd319cbe3dc2772f6920"
+  integrity sha512-UqwNm889PNRZ216MNBM247zinuua6X1KixTd6GSYzbXSEmAAQUVRSmZXK8QWB99ri0xl3qlDtKvh3SUNbpMzcg==
+  dependencies:
+    "@dnd-kit/core" "6.0.8"
+    "@dnd-kit/sortable" "7.0.2"
+    "@faceless-ui/modal" "3.0.0-beta.2"
+    "@faceless-ui/scroll-info" "2.0.0-beta.0"
+    "@faceless-ui/window-info" "3.0.0-beta.0"
+    "@monaco-editor/react" "4.5.1"
+    "@payloadcms/translations" "3.0.0-beta.63"
+    body-scroll-lock "4.0.0-beta.0"
+    bson-objectid "2.0.4"
+    date-fns "3.3.1"
+    dequal "2.0.3"
+    md5 "2.3.0"
+    object-to-formdata "4.5.1"
+    qs-esm "7.0.2"
+    react-animate-height "2.1.2"
+    react-datepicker "6.9.0"
+    react-image-crop "10.1.8"
+    react-select "5.8.0"
+    scheduler "0.25.0-rc-f994737d14-20240522"
+    sonner "^1.5.0"
+    use-context-selector "2.0.0"
+    uuid "10.0.0"
 
 "@sideway/address@^4.1.5":
   version "4.1.5"
@@ -3597,7 +3651,7 @@ define-properties@^1.2.0, define-properties@^1.2.1:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-dequal@^2.0.3:
+dequal@2.0.3, dequal@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.3.tgz#2644214f1997d39ed0ee0ece72335490a7ac67be"
   integrity sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==
@@ -4472,6 +4526,13 @@ flatted@^3.2.9:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.1.tgz#21db470729a6734d4997002f439cb308987f567a"
   integrity sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==
+
+focus-trap@7.5.4:
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-7.5.4.tgz#6c4e342fe1dae6add9c2aa332a6e7a0bbd495ba2"
+  integrity sha512-N7kHdlgsO/v+iD/dMoJKtsSqs5Dz/dXZVebRgJw23LDk+jMi/974zyiOYDziY2JPp8xivq9BmUGwIJMiuSBi7w==
+  dependencies:
+    tabbable "^6.2.0"
 
 focus-trap@^6.9.2:
   version "6.9.4"
@@ -6564,6 +6625,11 @@ pure-rand@^6.0.0:
   resolved "https://registry.yarnpkg.com/pure-rand/-/pure-rand-6.1.0.tgz#d173cf23258231976ccbdb05247c9787957604f2"
   integrity sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==
 
+qs-esm@7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/qs-esm/-/qs-esm-7.0.2.tgz#cdd52c8ddba8270258e0808423e8f28d8a7195c9"
+  integrity sha512-D8NAthKSD7SGn748v+GLaaO6k08Mvpoqroa35PqIQC4gtUa8/Pb/k+r0m0NnGBVbHDP1gKZ2nVywqfMisRhV5A==
+
 qs@6.11.2:
   version "6.11.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.2.tgz#64bea51f12c1f5da1bc01496f48ffcff7c69d7d9"
@@ -6607,6 +6673,17 @@ react-datepicker@6.2.0:
     prop-types "^15.7.2"
     react-onclickoutside "^6.13.0"
 
+react-datepicker@6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-6.9.0.tgz#0ad234dad81d567ae64cad79697bbad69c95490b"
+  integrity sha512-QTxuzeem7BUfVFWv+g5WuvzT0c5BPo+XTCNbMTZKSZQLU+cMMwSUHwspaxuIcDlwNcOH0tiJ+bh1fJ2yxOGYWA==
+  dependencies:
+    "@floating-ui/react" "^0.26.2"
+    clsx "^2.1.0"
+    date-fns "^3.3.1"
+    prop-types "^15.7.2"
+    react-onclickoutside "^6.13.0"
+
 react-diff-viewer-continued@3.2.6:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/react-diff-viewer-continued/-/react-diff-viewer-continued-3.2.6.tgz#96382463b5de6838d95323c407442349b1c3a26e"
@@ -6626,12 +6703,12 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-dom@^19.0.0-rc-85acf2d195-20240711:
-  version "19.0.0-rc-85acf2d195-20240711"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.0.0-rc-85acf2d195-20240711.tgz#67ac86aaa9aca79db95c83d90776282565d434e6"
-  integrity sha512-t+yfrdxht6C3zQW3LkMJOA5N83/dnDgJLCRmv1kjqt4KVF2YcHwSxinDM5aQUreU3ZLKoiKlP0RJ8tVtLoIjNw==
+react-dom@^19.0.0-rc-df5f2736-20240712:
+  version "19.0.0-rc-df5f2736-20240712"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.0.0-rc-df5f2736-20240712.tgz#c471cbcf093bd92a42c482313af93e65acbcafe2"
+  integrity sha512-ttLP75GOlhpY7rSkUmamEJoSclcJq27JH0TthsbkJC5jg4bE2VSB8BUs2hm22GX9sxvY8oZmtjbkka0nkdPhTg==
   dependencies:
-    scheduler "0.25.0-rc-85acf2d195-20240711"
+    scheduler "0.25.0-rc-df5f2736-20240712"
 
 react-error-boundary@4.0.12:
   version "4.0.12"
@@ -6682,6 +6759,21 @@ react-select@5.7.4:
     react-transition-group "^4.3.0"
     use-isomorphic-layout-effect "^1.1.2"
 
+react-select@5.8.0:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.8.0.tgz#bd5c467a4df223f079dd720be9498076a3f085b5"
+  integrity sha512-TfjLDo58XrhP6VG5M/Mi56Us0Yt8X7xD6cDybC7yoRMUNm7BGO7qk8J0TLQOua/prb8vUOtsfnXZwfm30HGsAA==
+  dependencies:
+    "@babel/runtime" "^7.12.0"
+    "@emotion/cache" "^11.4.0"
+    "@emotion/react" "^11.8.1"
+    "@floating-ui/dom" "^1.0.1"
+    "@types/react-transition-group" "^4.4.0"
+    memoize-one "^6.0.0"
+    prop-types "^15.6.0"
+    react-transition-group "^4.3.0"
+    use-isomorphic-layout-effect "^1.1.2"
+
 react-toastify@10.0.4:
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-10.0.4.tgz#6ecdbbf923a07fc45850e69b0566efc7bf733283"
@@ -6696,7 +6788,7 @@ react-toastify@8.2.0:
   dependencies:
     clsx "^1.1.1"
 
-react-transition-group@^4.3.0, react-transition-group@^4.4.2:
+react-transition-group@4.4.5, react-transition-group@^4.3.0, react-transition-group@^4.4.2:
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.5.tgz#e53d4e3f3344da8521489fbef8f2581d42becdd1"
   integrity sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==
@@ -6946,10 +7038,15 @@ scheduler@0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
-scheduler@0.25.0-rc-85acf2d195-20240711:
-  version "0.25.0-rc-85acf2d195-20240711"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.25.0-rc-85acf2d195-20240711.tgz#88add7bc83ee57d39c112b23d9ad2a7c03dbfa2f"
-  integrity sha512-ilgNtkO5RzWEUBa7RKTyCF7e6+/wcV6Z4MjUDyqem3jnjEpdmxfX2LcuCBAFwcoYJJnOLLuXNTAdBsbQdj7yYw==
+scheduler@0.25.0-rc-df5f2736-20240712:
+  version "0.25.0-rc-df5f2736-20240712"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.25.0-rc-df5f2736-20240712.tgz#536667a672d2a8b468989945b2d42865a69c0c33"
+  integrity sha512-3qtBdd7ACjA/UuRYvn7rltaMRsnSCtycf3bO8sepp+L4cyPP3k6knBl7hqybdkczmXKWHkxyYAuzX61nXKEP1g==
+
+scheduler@0.25.0-rc-f994737d14-20240522:
+  version "0.25.0-rc-f994737d14-20240522"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.25.0-rc-f994737d14-20240522.tgz#6bbdbf50adeb250035a26f082bf966077d264a7e"
+  integrity sha512-qS+xGFF7AljP2APO2iJe8zESNsK20k25MACz+WGOXPybUsRdi1ssvaoF93im2nSX2q/XT3wKkjdz6RQfbmaxdw==
 
 scheduler@^0.23.0:
   version "0.23.2"
@@ -7111,6 +7208,11 @@ sonic-boom@^3.0.0, sonic-boom@^3.1.0:
   integrity sha512-y4Z8LCDBuum+PBP3lSV7RHrXscqksve/bi0as7mhwVnBW+/wUqKT/2Kb7um8yqcFy0duYbbPxzt89Zy2nOCaxg==
   dependencies:
     atomic-sleep "^1.0.0"
+
+sonner@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/sonner/-/sonner-1.5.0.tgz#af359f817063318415326b33aab54c5d17c747b7"
+  integrity sha512-FBjhG/gnnbN6FY0jaNnqZOMmB73R+5IiyYAw8yBj7L54ER7HB3fOSE5OFiQiE2iXWxeXKvg6fIP4LtVppHEdJA==
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.2:
   version "1.2.0"
@@ -7349,7 +7451,7 @@ tabbable@^5.3.3:
   resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-5.3.3.tgz#aac0ff88c73b22d6c3c5a50b1586310006b47fbf"
   integrity sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==
 
-tabbable@^6.0.0:
+tabbable@^6.0.0, tabbable@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-6.2.0.tgz#732fb62bc0175cfcec257330be187dcfba1f3b97"
   integrity sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==
@@ -7584,6 +7686,11 @@ use-context-selector@1.4.1:
   resolved "https://registry.yarnpkg.com/use-context-selector/-/use-context-selector-1.4.1.tgz#eb96279965846b72915d7f899b8e6ef1d768b0ae"
   integrity sha512-Io2ArvcRO+6MWIhkdfMFt+WKQX+Vb++W8DS2l03z/Vw/rz3BclKpM0ynr4LYGyU85Eke+Yx5oIhTY++QR0ZDoA==
 
+use-context-selector@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/use-context-selector/-/use-context-selector-2.0.0.tgz#3b5dafec7aa947c152d4f0aa7f250e99a205df3d"
+  integrity sha512-owfuSmUNd3eNp3J9CdDl0kMgfidV+MkDvHPpvthN5ThqM+ibMccNE0k+Iq7TWC6JPFvGZqanqiGCuQx6DyV24g==
+
 use-isomorphic-layout-effect@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.2.tgz#497cefb13d863d687b08477d9e5a164ad8c1a6fb"
@@ -7598,6 +7705,11 @@ util-deprecate@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
+
+uuid@10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-10.0.0.tgz#5a95aa454e6e002725c79055fd42aaba30ca6294"
+  integrity sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==
 
 uuid@9.0.0:
   version "9.0.0"
