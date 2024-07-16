@@ -1,6 +1,6 @@
 {
   "name": "@payloadcms/payload-plugin-oauth",
-  "version": "0.0.0=1",
+  "version": "0.1.0",
   "homepage:": "https://github.com/sourabpramanik/plugin-payload-oauth",
   "repository": "git@github.com:sourabpramanik/plugin-payload-oauth.git",
   "description": "Oauth plugin for Payload CMS. Supports multiple providres",
