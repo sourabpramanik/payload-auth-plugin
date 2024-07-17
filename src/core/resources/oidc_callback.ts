@@ -58,7 +58,6 @@ export async function OIDCCallback(
   if (oauth.isOAuth2Error(token_result)) {
     throw new Error('Invalid response')
   }
-  console.log(token_result)
 
   // const session_url = new URL(request.url as string)
   // session_url.pathname = session_url.pathname.replace(/\/callback\//, '/session/')
