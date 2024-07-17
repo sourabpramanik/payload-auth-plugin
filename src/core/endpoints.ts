@@ -12,7 +12,8 @@ export function generateEndpoints(pluginOptions: PluginOptions): Endpoint[] {
         return GET(
           request,
           request.routeParams?.resource as string,
-          pluginOptions.providers[request.routeParams?.provider as string],
+          request.routeParams?.provider as string,
+          pluginOptions,
         )
       },
     },

@@ -33,23 +33,15 @@ export function generateAccountsCollection(
         label: 'User',
       },
       {
-        name: 'provider',
+        name: 'issuerName',
         type: 'text',
         required: true,
-      },
-      {
-        name: 'access_token',
-        type: 'text',
-        label: 'Access Token',
-      },
-      {
-        name: 'expires_at',
-        type: 'date',
-        label: 'Expires At',
+        label: 'Issuer Name',
       },
       {
         name: 'scope',
         type: 'text',
+        required: true,
       },
       {
         name: 'sub',

@@ -7,6 +7,7 @@ import { getCallbackURL } from '../utils/cb'
 export async function OIDCCallback(
   request: PayloadRequest,
   provider: ProviderClientConfig,
+  session_callback: (claims: oauth.UserInfoResponse) => Promise<Response>,
 ): Promise<Response> {
   const nonce = cookies().get('payload_auth_nonce')
   const code_verifier = cookies().get('payload_auth_code_verifier')
@@ -14,6 +15,8 @@ export async function OIDCCallback(
   if (!code_verifier) {
     throw Error('Invalid session')
   }
+  cookies().delete('payload_auth_code_verifier')
+  cookies().delete('payload_auth_nonce')
 
   const client: oauth.Client = {
     client_id: provider.client_id,
@@ -38,7 +41,6 @@ export async function OIDCCallback(
     callback_url.toString(),
     code_verifier.value,
   )
-
   const challenges = oauth.parseWwwAuthenticateChallenges(response)
 
   if (challenges) {
@@ -59,16 +61,13 @@ export async function OIDCCallback(
     throw new Error('Invalid response')
   }
 
-  // const session_url = new URL(request.url as string)
-  // session_url.pathname = session_url.pathname.replace(/\/callback\//, '/session/')
-  // session_url.host = request.headers.get('x-forwarded-host') || callback_url.host
-  // session_url.search = ''
+  const claims = oauth.getValidatedIdTokenClaims(token_result)
+  const userInfoResponse = await oauth.userInfoRequest(as, client, token_result.access_token)
 
-  // cookies().set('session-token', token_result.access_token as string, {
-  //   expires: new Date(Date.now() + 100 * 1000),
-  //   path: '/',
-  //   httpOnly: true,
-  // })
+  if (oauth.parseWwwAuthenticateChallenges(userInfoResponse)) {
+    throw new Error()
+  }
 
-  return Response.json('Session time')
+  const result = await oauth.processUserInfoResponse(as, client, claims.sub, userInfoResponse)
+  return session_callback(result)
 }

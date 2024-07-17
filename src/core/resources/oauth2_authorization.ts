@@ -1,10 +1,10 @@
-import * as oauth from 'oauth4webapi'
 import type { PayloadRequest } from 'payload/types'
+import * as oauth from 'oauth4webapi'
 import { cookies } from 'next/headers'
 import type { ProviderClientConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 
-export async function OIDCAuthorization(
+export async function OAuth2Authorization(
   request: PayloadRequest,
   provider: ProviderClientConfig,
 ): Promise<Response> {
@@ -30,11 +30,11 @@ export async function OIDCAuthorization(
   authorizationURL.searchParams.set('code_challenge', code_challenge)
   authorizationURL.searchParams.set('code_challenge_method', code_challenge_method)
 
-  if (provider.authorization_server.code_challenge_methods_supported?.includes('S256') !== true) {
-    const nonce = oauth.generateRandomNonce()
-    authorizationURL.searchParams.set('nonce', nonce)
+  if (as.code_challenge_methods_supported?.includes('S256') !== true) {
+    const state = oauth.generateRandomState()
+    authorizationURL.searchParams.set('state', state)
 
-    cookies().set('payload_auth_nonce', nonce, {
+    cookies().set('payload_auth_state', state, {
       expires: cookieMaxage,
       path: '/',
       httpOnly: true,
