@@ -9,7 +9,7 @@ Ordered according to the priority
 - Handle errors gracefully [Fix] ⚙
 - Support SAML/SSO sign-in [Feat] ⚙
 - Support Passkey sign-in [Feat] ❓
-  
+
 ## Basic Usage
 Coming soon...
 
@@ -19,12 +19,13 @@ There is a long list of providers that I want to add to this plugin. But with ev
 - [X] Google
 - [X] GitHub
 - [ ] Auth0
+- [X] Atlassian
 - [ ] Azure Active Directory
 - [ ] Discord
 - [ ] Dropbox
 - [ ] Facebook
 - [ ] Instagram
-- [ ] GitLab
+- [X] GitLab
 - [ ] Okta
 - [ ] Slack
 - [ ] Reddit
