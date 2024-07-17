@@ -71,7 +71,17 @@ export interface PluginOptions {
    */
   failureRedirect?: string
 }
+export type SessionOptions = Omit<
+  PluginOptions,
+  'providers' | 'buttonProps' | 'buttonComponent' | 'enabled'
+>
 
+export interface Oauth2AccountInfo {
+  sub: string
+  name?: string
+  email?: string
+  picture?: string
+}
 export interface SigninButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /*
    * @default "Signin with {provider}"
