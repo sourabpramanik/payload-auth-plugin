@@ -11,24 +11,25 @@ export interface ProviderConfig {
    */
   client_secret: string
   /*
-   * (Optional) Request user information resources
-   */
-  scope?: string
-  /*
-   * Provider prompt screen config
-   */
-  prompt?: string
-  /*
    * Additional parameters you would like to add to query for the provider
    */
   params?: Record<string, string>
 }
-
-export interface ProviderClientConfig extends ProviderConfig {
+export interface OIDCProviderConfig extends ProviderConfig {
+  issuer: URL
+  name: string
+  algorithm: 'oidc'
+  scope: string
+}
+export interface OAuth2ProviderConfig extends ProviderConfig {
   authorization_server: AuthorizationServer
-  algorithm: 'oidc' | 'oauth2'
-  provider_sub?: string
-  displayName: string
+  name: string
+  algorithm: 'oauth2'
+  scope: string
+  nameField: string
+  uidField: string
+  emailField: string
+  pictureField: string
 }
 
 export interface PluginOptions {
@@ -39,7 +40,7 @@ export interface PluginOptions {
   /*
    * Providers
    */
-  providers: Record<string, ProviderClientConfig>
+  providers: Record<string, OAuth2ProviderConfig | OIDCProviderConfig>
   /*
    * Accounts are associated with user. A user can have multiple accounts but each account can belong to only one user.
    * By default the accounts collection created by this plugin will use "accounts" slug.

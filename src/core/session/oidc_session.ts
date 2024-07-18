@@ -3,11 +3,11 @@ import type { UserInfoResponse } from 'oauth4webapi'
 import jwt from 'jsonwebtoken'
 import { getCookieExpiration } from 'payload/auth'
 import { cookies } from 'next/headers'
-import type { ProviderClientConfig, SessionOptions } from '../../types'
+import type { OIDCProviderConfig, SessionOptions } from '../../types'
 
 export async function oidcSession(
   request: PayloadRequest,
-  provider: ProviderClientConfig,
+  providerConfig: OIDCProviderConfig,
   sessionOptions: SessionOptions,
   accountInfo: UserInfoResponse,
 ): Promise<Response> {
@@ -18,6 +18,7 @@ export async function oidcSession(
   const usersSlug = usersCollectionSlug ?? 'users'
   const accountsSlug = accountsCollection?.slug ?? 'accounts'
   const accountsCollectionConfig = payload.collections[accountsSlug].config
+
   const accountRecord = await payload.find({
     collection: accountsSlug,
     where: {
@@ -34,7 +35,7 @@ export async function oidcSession(
         id: { equals: accountRecord.docs[0].id },
       },
       data: {
-        scope: provider.scope,
+        scope: providerConfig.scope,
         name: accountInfo.name,
         picture: accountInfo.picture,
       },
@@ -64,8 +65,8 @@ export async function oidcSession(
       collection: accountsSlug,
       data: {
         sub: accountInfo.sub,
-        issuerName: provider.displayName,
-        scope: provider.scope,
+        issuerName: providerConfig.name,
+        scope: providerConfig.scope,
         name: accountInfo.name,
         picture: accountInfo.picture,
         user: userId,

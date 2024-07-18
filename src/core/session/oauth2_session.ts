@@ -2,11 +2,11 @@ import type { PayloadRequest } from 'payload/types'
 import jwt from 'jsonwebtoken'
 import { getCookieExpiration } from 'payload/auth'
 import { cookies } from 'next/headers'
-import type { ProviderClientConfig, SessionOptions, Oauth2AccountInfo } from '../../types'
+import type { SessionOptions, Oauth2AccountInfo, OAuth2ProviderConfig } from '../../types'
 
 export async function oauth2Session(
   request: PayloadRequest,
-  provider: ProviderClientConfig,
+  providerConfig: OAuth2ProviderConfig,
   sessionOptions: SessionOptions,
   accountInfo: Oauth2AccountInfo,
 ): Promise<Response> {
@@ -17,6 +17,7 @@ export async function oauth2Session(
   const usersSlug = usersCollectionSlug ?? 'users'
   const accountsSlug = accountsCollection?.slug ?? 'accounts'
   const accountsCollectionConfig = payload.collections[accountsSlug].config
+
   const accountRecord = await payload.find({
     collection: accountsSlug,
     where: {
@@ -33,7 +34,7 @@ export async function oauth2Session(
         id: { equals: accountRecord.docs[0].id },
       },
       data: {
-        scope: provider.scope,
+        scope: providerConfig.scope,
         name: accountInfo.name,
         picture: accountInfo.picture,
       },
@@ -63,8 +64,8 @@ export async function oauth2Session(
       collection: accountsSlug,
       data: {
         sub: accountInfo.sub,
-        issuerName: provider.displayName,
-        scope: provider.scope,
+        issuerName: providerConfig.name,
+        scope: providerConfig.scope,
         name: accountInfo.name,
         picture: accountInfo.picture,
         user: userId,

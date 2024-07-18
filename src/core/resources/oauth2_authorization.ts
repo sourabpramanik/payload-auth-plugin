@@ -1,32 +1,34 @@
 import type { PayloadRequest } from 'payload/types'
 import * as oauth from 'oauth4webapi'
 import { cookies } from 'next/headers'
-import type { ProviderClientConfig } from '../../types'
+import type { OAuth2ProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 
 export async function OAuth2Authorization(
   request: PayloadRequest,
-  provider: ProviderClientConfig,
+  providerConfig: OAuth2ProviderConfig,
 ): Promise<Response> {
   const callback_url = getCallbackURL(request)
   const code_verifier = oauth.generateRandomCodeVerifier()
   const code_challenge = await oauth.calculatePKCECodeChallenge(code_verifier)
   const code_challenge_method = 'S256'
 
+  const { authorization_server, client_id, client_secret, scope } = providerConfig
+
   const client: oauth.Client = {
-    client_id: provider.client_id,
-    client_secret: provider.client_secret,
+    client_id,
+    client_secret,
     token_endpoint_auth_method: 'client_secret_basic',
   }
 
-  const as = provider.authorization_server
+  const as = authorization_server
   const cookieMaxage = new Date(Date.now() + 300 * 1000)
 
   const authorizationURL = new URL(as.authorization_endpoint!) // eslint-disable-line
   authorizationURL.searchParams.set('client_id', client.client_id)
   authorizationURL.searchParams.set('redirect_uri', callback_url.toString())
   authorizationURL.searchParams.set('response_type', 'code')
-  authorizationURL.searchParams.set('scope', provider.scope as string)
+  authorizationURL.searchParams.set('scope', scope as string)
   authorizationURL.searchParams.set('code_challenge', code_challenge)
   authorizationURL.searchParams.set('code_challenge_method', code_challenge_method)
 

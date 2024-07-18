@@ -1,12 +1,12 @@
 import type { PayloadRequest } from 'payload/types'
 import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
-import type { Oauth2AccountInfo, ProviderClientConfig } from '../../types'
+import type { Oauth2AccountInfo, OAuth2ProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 
 export async function OAuth2Callback(
   request: PayloadRequest,
-  provider: ProviderClientConfig,
+  provider: OAuth2ProviderConfig,
   session_callback: (accountInfo: Oauth2AccountInfo) => Promise<Response>,
 ): Promise<Response> {
   const state = cookies().get('payload_auth_state')
@@ -59,10 +59,11 @@ export async function OAuth2Callback(
 
   const userInfoResponse = await oauth.userInfoRequest(as, client, token_result.access_token)
   const userInfo = await userInfoResponse.json()
+
   return session_callback({
-    sub: userInfo[provider.provider_sub as string],
-    name: userInfo.name,
-    email: userInfo.email,
-    picture: userInfo.picture,
+    sub: userInfo[provider.uidField],
+    name: userInfo[provider.nameField],
+    email: userInfo[provider.emailField],
+    picture: userInfo[provider.pictureField],
   })
 }

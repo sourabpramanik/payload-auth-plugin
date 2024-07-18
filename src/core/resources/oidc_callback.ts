@@ -1,12 +1,12 @@
 import type { PayloadRequest } from 'payload/types'
 import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
-import type { ProviderClientConfig } from '../../types'
+import type { OIDCProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 
 export async function OIDCCallback(
   request: PayloadRequest,
-  provider: ProviderClientConfig,
+  providerConfig: OIDCProviderConfig,
   session_callback: (claims: oauth.UserInfoResponse) => Promise<Response>,
 ): Promise<Response> {
   const nonce = cookies().get('payload_auth_nonce')
@@ -18,15 +18,19 @@ export async function OIDCCallback(
   cookies().delete('payload_auth_code_verifier')
   cookies().delete('payload_auth_nonce')
 
+  const { client_id, client_secret, issuer, algorithm } = providerConfig
   const client: oauth.Client = {
-    client_id: provider.client_id,
-    client_secret: provider.client_secret,
+    client_id,
+    client_secret,
     token_endpoint_auth_method: 'client_secret_basic',
   }
 
   const current_url = new URL(request.url as string)
   const callback_url = getCallbackURL(request)
-  const as = provider.authorization_server
+
+  const as = await oauth
+    .discoveryRequest(issuer, { algorithm })
+    .then(response => oauth.processDiscoveryResponse(issuer, response))
 
   const params = oauth.validateAuthResponse(as, client, current_url)
 
@@ -57,6 +61,7 @@ export async function OIDCCallback(
     response,
     nonce?.value as string,
   )
+
   if (oauth.isOAuth2Error(token_result)) {
     throw new Error('Invalid response')
   }
