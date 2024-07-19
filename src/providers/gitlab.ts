@@ -9,7 +9,7 @@ function GitLabAuthProvider(config: GitLabAuthConfig): OIDCProviderConfig {
     ...config,
     scope: 'openid email profile',
     issuer,
-    name: 'GitHub',
+    name: 'GitLab',
     algorithm,
   }
 }
