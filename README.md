@@ -8,10 +8,12 @@ An OAuth sign-in plugin for the admin dashboard.
 Ordered according to the priority
 
 - Support multiple providers [Feat] ✅
-- Add options to customize the sign-in button [Feat] ⚙
-- Handle errors gracefully [Fix] ⚙
+- Add options to customize the sign-in button [Feat] ✅
+- Handle errors gracefully [Fix] ✅
 - Support SAML/SSO sign-in [Feat] ⚙
-- Support Passkey sign-in [Feat] ❓
+- Support magic link [Feat] ⚙
+- Support Passkey sign-in [Feat]❓
+- Support front-end authentication [Feat]❓
 
 ## Basic Usage
 Coming soon...
