@@ -40,7 +40,7 @@ export interface PluginOptions {
   /*
    * Providers
    */
-  providers: Record<string, OAuth2ProviderConfig | OIDCProviderConfig>
+  providers: Record<string, T>
   /*
    * Accounts are associated with user. A user can have multiple accounts but each account can belong to only one user.
    * By default the accounts collection created by this plugin will use "accounts" slug.
