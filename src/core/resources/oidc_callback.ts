@@ -3,10 +3,12 @@ import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
 import type { OIDCProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
+import { AuthError } from '../error'
 
 export async function OIDCCallback(
   request: PayloadRequest,
   providerConfig: OIDCProviderConfig,
+  errorRedirectPath: string,
   session_callback: (claims: oauth.UserInfoResponse) => Promise<Response>,
 ): Promise<Response> {
   const nonce = cookies().get('payload_auth_nonce')
@@ -35,7 +37,7 @@ export async function OIDCCallback(
   const params = oauth.validateAuthResponse(as, client, current_url)
 
   if (oauth.isOAuth2Error(params)) {
-    throw new Error('Invalid params')
+    return AuthError(request, errorRedirectPath, 'Invalid params')
   }
 
   const response = await oauth.authorizationCodeGrantRequest(
@@ -48,11 +50,7 @@ export async function OIDCCallback(
   const challenges = oauth.parseWwwAuthenticateChallenges(response)
 
   if (challenges) {
-    for (const challenge of challenges) {
-      console.error('WWW-Authenticate Challenge', challenge) // eslint-disable-line
-    }
-
-    throw new Error('Failed to authenticate')
+    return AuthError(request, errorRedirectPath, 'Failed to authenticate')
   }
 
   const token_result = await oauth.processAuthorizationCodeOpenIDResponse(
@@ -63,14 +61,14 @@ export async function OIDCCallback(
   )
 
   if (oauth.isOAuth2Error(token_result)) {
-    throw new Error('Invalid response')
+    return AuthError(request, errorRedirectPath, 'Failed to authenticate')
   }
 
   const claims = oauth.getValidatedIdTokenClaims(token_result)
   const userInfoResponse = await oauth.userInfoRequest(as, client, token_result.access_token)
 
   if (oauth.parseWwwAuthenticateChallenges(userInfoResponse)) {
-    throw new Error()
+    return AuthError(request, errorRedirectPath, 'Failed to authenticate')
   }
 
   const result = await oauth.processUserInfoResponse(as, client, claims.sub, userInfoResponse)

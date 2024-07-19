@@ -3,10 +3,12 @@ import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
 import type { Oauth2AccountInfo, OAuth2ProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
+import { AuthError } from '../error'
 
 export async function OAuth2Callback(
   request: PayloadRequest,
   provider: OAuth2ProviderConfig,
+  errorRedirectPath: string,
   session_callback: (accountInfo: Oauth2AccountInfo) => Promise<Response>,
 ): Promise<Response> {
   const state = cookies().get('payload_auth_state')
@@ -31,7 +33,7 @@ export async function OAuth2Callback(
   const params = oauth.validateAuthResponse(as, client, current_url, state?.value as string)
 
   if (oauth.isOAuth2Error(params)) {
-    throw new Error('Invalid params')
+    return AuthError(request, errorRedirectPath, 'Invalid params')
   }
 
   const response = await oauth.authorizationCodeGrantRequest(
@@ -45,16 +47,12 @@ export async function OAuth2Callback(
   const challenges = oauth.parseWwwAuthenticateChallenges(response)
 
   if (challenges) {
-    for (const challenge of challenges) {
-      console.error('WWW-Authenticate Challenge', challenge) // eslint-disable-line
-    }
-
-    throw new Error('Failed to authenticate')
+    return AuthError(request, errorRedirectPath, 'Failed to authenticate')
   }
 
   const token_result = await oauth.processAuthorizationCodeOAuth2Response(as, client, response)
   if (oauth.isOAuth2Error(token_result)) {
-    throw new Error('Invalid response')
+    return AuthError(request, errorRedirectPath, 'Failed to authenticate')
   }
 
   const userInfoResponse = await oauth.userInfoRequest(as, client, token_result.access_token)

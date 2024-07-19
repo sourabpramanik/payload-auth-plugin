@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 import { getCookieExpiration } from 'payload/auth'
 import { cookies } from 'next/headers'
 import type { OAuth2ProviderConfig, OIDCProviderConfig, SessionOptions } from '../../types'
+import { AuthError } from '../error'
 
 export async function oidcSession(
   request: PayloadRequest,
@@ -17,6 +18,8 @@ export async function oidcSession(
   const usersSlug = usersCollectionSlug ?? 'users'
   const accountsSlug = accountsCollection?.slug ?? 'accounts'
   const accountsCollectionConfig = payload.collections[accountsSlug].config
+  const errorRedirectPath = errorRedirect ?? '/admin/login'
+  const successRedirectPath = successRedirect ?? '/admin'
 
   const accountRecord = await payload.find({
     collection: accountsSlug,
@@ -56,7 +59,7 @@ export async function oidcSession(
     })
 
     if (!user.docs || user.docs.length === 0) {
-      throw Error("User doesn't exist")
+      return AuthError(request, errorRedirectPath, 'User not found')
     }
     userId = user.docs[0].id as string
 
@@ -94,6 +97,7 @@ export async function oidcSession(
     secure: false,
     sameSite: 'lax',
   })
-
-  return Response.redirect('http://localhost:3000/admin')
+  const successURL = new URL(request.url as string)
+  successURL.pathname = successRedirectPath
+  return Response.redirect(successURL.toString())
 }

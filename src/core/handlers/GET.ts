@@ -9,6 +9,7 @@ import type {
 } from '../../types'
 import { OAuth2Authorization, OIDCCallback, OIDCAuthorization, OAuth2Callback } from '../resources'
 import { oauth2Session, oidcSession } from '../session'
+import { AuthError } from '../error'
 
 export function GET(
   request: PayloadRequest,
@@ -21,8 +22,9 @@ export function GET(
     throw Error('Invalid provider request')
   }
 
-  const { providers, ...rest } = pluginOptions
+  const { providers, errorRedirect, ...rest } = pluginOptions
   const sessionOptions: SessionOptions<OAuth2ProviderConfig | OIDCProviderConfig> = rest
+  const errorRedirectPath = errorRedirect ?? '/admin/login'
 
   switch (resource) {
     case 'authorization':
@@ -32,22 +34,30 @@ export function GET(
         case 'oauth2':
           return OAuth2Authorization(request, provider)
         default:
-          throw Error(`Invalid provider request`)
+          return AuthError(request, errorRedirectPath, 'Invaild provider requested')
       }
     case 'callback':
       switch (provider.algorithm) {
         case 'oidc':
-          return OIDCCallback(request, provider, (accountInfo: UserInfoResponse) =>
-            oidcSession(request, provider, sessionOptions, accountInfo),
+          return OIDCCallback(
+            request,
+            provider,
+            errorRedirectPath,
+            (accountInfo: UserInfoResponse) =>
+              oidcSession(request, provider, sessionOptions, accountInfo),
           )
         case 'oauth2':
-          return OAuth2Callback(request, provider, (accountInfo: Oauth2AccountInfo) =>
-            oauth2Session(request, provider, sessionOptions, accountInfo),
+          return OAuth2Callback(
+            request,
+            provider,
+            errorRedirectPath,
+            (accountInfo: Oauth2AccountInfo) =>
+              oauth2Session(request, provider, sessionOptions, accountInfo),
           )
         default:
-          throw Error(`Invalid provider request`)
+          return AuthError(request, errorRedirectPath, 'Invalid provider request')
       }
     default:
-      throw Error('Invalid resource request')
+      return AuthError(request, errorRedirectPath, 'Invalid resource request')
   }
 }

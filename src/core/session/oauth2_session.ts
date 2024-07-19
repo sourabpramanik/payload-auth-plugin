@@ -8,6 +8,7 @@ import type {
   OAuth2ProviderConfig,
   OIDCProviderConfig,
 } from '../../types'
+import { AuthError } from '../error'
 
 export async function oauth2Session(
   request: PayloadRequest,
@@ -21,6 +22,8 @@ export async function oauth2Session(
   const usersSlug = usersCollectionSlug ?? 'users'
   const accountsSlug = accountsCollection?.slug ?? 'accounts'
   const accountsCollectionConfig = payload.collections[accountsSlug].config
+  const errorRedirectPath = errorRedirect ?? '/admin/login'
+  const successRedirectPath = successRedirect ?? '/admin'
 
   const accountRecord = await payload.find({
     collection: accountsSlug,
@@ -60,7 +63,7 @@ export async function oauth2Session(
     })
 
     if (!user.docs || user.docs.length === 0) {
-      throw Error("User doesn't exist")
+      return AuthError(request, errorRedirectPath, 'User not found')
     }
     userId = user.docs[0].id as string
 
@@ -99,5 +102,7 @@ export async function oauth2Session(
     sameSite: 'lax',
   })
 
-  return Response.redirect('http://localhost:3000/admin')
+  const successURL = new URL(request.url as string)
+  successURL.pathname = successRedirectPath
+  return Response.redirect(successURL.toString())
 }
