@@ -55,10 +55,10 @@ export interface PluginOptions {
    */
   usersCollectionSlug?: string
   /*
-   * Signin button position.
+   * OAuth component position.
    * @default 'afterLogin'
    */
-  buttonComponent?: 'beforeLogin' | 'afterLogin'
+  placeAuthComponent?: 'beforeLogin' | 'afterLogin'
   /*
    * Optional signing button props.
    */
