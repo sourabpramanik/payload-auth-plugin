@@ -13,6 +13,7 @@ type GitHubAuthConfig = ProviderConfig
 function GitHubAuthProvider(config: GitHubAuthConfig): OAuth2ProviderConfig {
   return {
     ...config,
+    id: 'github',
     scope: 'openid email profile',
     authorization_server,
     name: 'GitHub',

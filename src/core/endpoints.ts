@@ -1,9 +1,11 @@
 import type { PayloadRequest } from 'payload/types'
 import type { Endpoint } from 'payload/config'
-import type { PluginOptions } from '../types'
+import type { EndpointOptions, OAuth2ProviderConfig, OIDCProviderConfig } from '../types'
 import { GET } from './handlers/GET'
 
-export function generateEndpoints(pluginOptions: PluginOptions): Endpoint[] {
+export function generateEndpoints(
+  pluginOptions: EndpointOptions<OAuth2ProviderConfig | OIDCProviderConfig>,
+): Endpoint[] {
   return [
     {
       path: '/oauth/:resource/:provider',

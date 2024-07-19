@@ -7,6 +7,7 @@ function GitLabAuthProvider(config: GitLabAuthConfig): OIDCProviderConfig {
   const algorithm = 'oidc'
   return {
     ...config,
+    id: 'gitlab',
     scope: 'openid email profile',
     issuer,
     name: 'GitLab',

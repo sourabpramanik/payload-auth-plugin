@@ -15,6 +15,7 @@ type AtlassianAuthConfig = ProviderConfig
 function AtlassianAuthProvider(config: AtlassianAuthConfig): OAuth2ProviderConfig {
   return {
     ...config,
+    id: 'atlassian',
     authorization_server,
     name: 'Atlassian',
     algorithm,

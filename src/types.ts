@@ -17,12 +17,14 @@ export interface ProviderConfig {
 }
 export interface OIDCProviderConfig extends ProviderConfig {
   issuer: URL
+  id: string
   name: string
   algorithm: 'oidc'
   scope: string
 }
 export interface OAuth2ProviderConfig extends ProviderConfig {
   authorization_server: AuthorizationServer
+  id: string
   name: string
   algorithm: 'oauth2'
   scope: string
@@ -32,7 +34,7 @@ export interface OAuth2ProviderConfig extends ProviderConfig {
   pictureField: string
 }
 
-export interface PluginOptions {
+export interface PluginOptions<T extends OAuth2ProviderConfig | OIDCProviderConfig> {
   /* Enable or disable plugin
    * @default true
    */
@@ -40,7 +42,7 @@ export interface PluginOptions {
   /*
    * Providers
    */
-  providers: Record<string, T>
+  providers: T[]
   /*
    * Accounts are associated with user. A user can have multiple accounts but each account can belong to only one user.
    * By default the accounts collection created by this plugin will use "accounts" slug.
@@ -68,12 +70,19 @@ export interface PluginOptions {
    */
   successRedirect?: string
   /*
+   * Any path in your application where the users can be redirected in case of errors
    * @default '/login'
    */
-  failureRedirect?: string
+  errorRedirect?: string
 }
-export type SessionOptions = Omit<
-  PluginOptions,
+export type EndpointOptions<T extends OAuth2ProviderConfig | OIDCProviderConfig> = Omit<
+  PluginOptions<T>,
+  'providers' | 'buttonProps' | 'placeAuthComponent' | 'enabled'
+> & {
+  providers: Record<string, T>
+}
+export type SessionOptions<T extends OAuth2ProviderConfig | OIDCProviderConfig> = Omit<
+  PluginOptions<T>,
   'providers' | 'buttonProps' | 'buttonComponent' | 'enabled'
 >
 

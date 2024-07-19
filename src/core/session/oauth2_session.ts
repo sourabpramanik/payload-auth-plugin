@@ -2,17 +2,21 @@ import type { PayloadRequest } from 'payload/types'
 import jwt from 'jsonwebtoken'
 import { getCookieExpiration } from 'payload/auth'
 import { cookies } from 'next/headers'
-import type { SessionOptions, Oauth2AccountInfo, OAuth2ProviderConfig } from '../../types'
+import type {
+  SessionOptions,
+  Oauth2AccountInfo,
+  OAuth2ProviderConfig,
+  OIDCProviderConfig,
+} from '../../types'
 
 export async function oauth2Session(
   request: PayloadRequest,
   providerConfig: OAuth2ProviderConfig,
-  sessionOptions: SessionOptions,
+  sessionOptions: SessionOptions<OIDCProviderConfig>,
   accountInfo: Oauth2AccountInfo,
 ): Promise<Response> {
   const { payload } = request
-  const { usersCollectionSlug, accountsCollection, successRedirect, failureRedirect } =
-    sessionOptions
+  const { usersCollectionSlug, accountsCollection, successRedirect, errorRedirect } = sessionOptions
 
   const usersSlug = usersCollectionSlug ?? 'users'
   const accountsSlug = accountsCollection?.slug ?? 'accounts'

@@ -1,6 +1,12 @@
 import type { PayloadRequest } from 'payload/types'
 import type { UserInfoResponse } from 'oauth4webapi'
-import type { Oauth2AccountInfo, PluginOptions, SessionOptions } from '../../types'
+import type {
+  EndpointOptions,
+  Oauth2AccountInfo,
+  OAuth2ProviderConfig,
+  OIDCProviderConfig,
+  SessionOptions,
+} from '../../types'
 import { OAuth2Authorization, OIDCCallback, OIDCAuthorization, OAuth2Callback } from '../resources'
 import { oauth2Session, oidcSession } from '../session'
 
@@ -8,15 +14,15 @@ export function GET(
   request: PayloadRequest,
   resource: string,
   providerId: string,
-  pluginOptions: PluginOptions,
+  pluginOptions: EndpointOptions<OAuth2ProviderConfig | OIDCProviderConfig>,
 ): Promise<Response> {
   const provider = pluginOptions.providers[providerId]
   if (!provider) {
     throw Error('Invalid provider request')
   }
 
-  const { providers, enabled, buttonProps, buttonComponent, ...rest } = pluginOptions
-  const sessionOptions: SessionOptions = rest
+  const { providers, ...rest } = pluginOptions
+  const sessionOptions: SessionOptions<OAuth2ProviderConfig | OIDCProviderConfig> = rest
 
   switch (resource) {
     case 'authorization':

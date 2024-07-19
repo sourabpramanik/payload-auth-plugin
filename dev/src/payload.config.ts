@@ -26,24 +26,24 @@ export default buildConfig({
   plugins: [
     AuthPlugin({
       placeAuthComponent: 'beforeLogin',
-      providers: {
-        google: GoogleAuthProvider({
+      providers: [
+        GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
           client_secret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
-        github: GitHubAuthProvider({
+        GitHubAuthProvider({
           client_id: process.env.GITHUB_CLIENT_ID as string,
           client_secret: process.env.GITHUB_CLIENT_SECRET as string,
         }),
-        gitlab: GitLabAuthProvider({
+        GitLabAuthProvider({
           client_id: process.env.GITLAB_CLIENT_ID as string,
           client_secret: process.env.GITLAB_CLIENT_SECRET as string,
         }),
-        atlassian: AtlassianAuthProvider({
+        AtlassianAuthProvider({
           client_id: process.env.ATLASSIAN_CLIENT_ID as string,
           client_secret: process.env.ATLASSIAN_CLIENT_SECRET as string,
         }),
-      },
+      ],
     }),
   ],
   db: mongooseAdapter({
