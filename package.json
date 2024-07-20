@@ -62,7 +62,6 @@
   "packageManager": "yarn@1.22.22",
   "dependencies": {
     "jsonwebtoken": "^9.0.2",
-    "nanoid": "^5.0.7",
     "oauth4webapi": "^2.11.1",
     "react-dom": "^19.0.0-rc-85acf2d195-20240711"
   }
