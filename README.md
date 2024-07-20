@@ -1,8 +1,7 @@
-# Payload OAuth Plugin (Unofficial) [WIP]
-> NOT TO BE USED IN PRODUCTION YET
+# Payload OAuth Plugin (Unofficial)
+This plugin is designed to simplify the integration of multiple Open Authorization (OAuth) and OpenID Connect providers with Payload CMS. By leveraging pre-configured providers, developers can quickly and effortlessly set up authentication mechanisms.
 
-
-An OAuth sign-in plugin for the admin dashboard.
+> **Note: This plugin supports all versions of Payload CMS starting from version 3.0 and above.**
 
 ## Roadmap
 Ordered according to the priority
@@ -15,11 +14,17 @@ Ordered according to the priority
 - Support Passkey sign-in [Feat]❓
 - Support front-end authentication [Feat]❓
 
-## Basic Usage
+## Usage
 Coming soon...
 
-## Providers
-There is a long list of providers that I want to add to this plugin. But with every provider, some implementation differences has to be taken into consideration to keep the workflow streamlined and more generalized for all providers. Hence I will be aiming for the most widely used providers for now. Check out the list:
+## Open Authorization/OpenID Connect Protocol Based Providers
+This plugin includes multiple pre-configured Open Authorization (OAuth) and OpenID Connect protocol-based providers. These configurations streamline the developer experience and integrations, ensuring the authentication process is seamless and uniform across different providers.
+
+To get started, you'll need the Client ID and Client Secret tokens, which can be found in the provider's console/dashboard. Simply provide these tokens to the plugin's provider settings.
+
+Some providers may require additional domain-specific metadata that cannot be generalized. In such cases, you'll need to provide these specific details as well.
+
+### List of active and upcoming providers:
 
 - [X] Google
 - [X] GitHub
