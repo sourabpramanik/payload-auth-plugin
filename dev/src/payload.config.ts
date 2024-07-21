@@ -25,7 +25,6 @@ export default buildConfig({
   },
   plugins: [
     AuthPlugin({
-      placeAuthComponent: 'beforeLogin',
       providers: [
         GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
