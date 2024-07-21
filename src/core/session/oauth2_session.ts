@@ -104,5 +104,6 @@ export async function oauth2Session(
 
   const successURL = new URL(request.url as string)
   successURL.pathname = successRedirectPath
+  successURL.search = ''
   return Response.redirect(successURL.toString())
 }
