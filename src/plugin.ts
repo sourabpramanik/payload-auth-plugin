@@ -1,5 +1,5 @@
-import type { Plugin } from 'payload/config'
 import { createElement } from 'react'
+import type { Plugin } from 'payload'
 import type {
   EndpointOptions,
   OAuth2ProviderConfig,

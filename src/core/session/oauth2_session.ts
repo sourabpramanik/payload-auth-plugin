@@ -1,6 +1,6 @@
-import type { PayloadRequest } from 'payload/types'
+import type { PayloadRequest } from 'payload'
 import jwt from 'jsonwebtoken'
-import { getCookieExpiration } from 'payload/auth'
+import { getCookieExpiration } from 'payload'
 import { cookies } from 'next/headers'
 import type {
   SessionOptions,

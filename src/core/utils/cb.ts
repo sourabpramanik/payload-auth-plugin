@@ -1,4 +1,4 @@
-import type { PayloadRequest } from 'payload/types'
+import type { PayloadRequest } from 'payload'
 
 export function getCallbackURL(request: PayloadRequest): URL {
   const callback_url = new URL(request.url as string)

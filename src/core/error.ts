@@ -1,4 +1,4 @@
-import type { PayloadRequest } from 'payload/types'
+import type { PayloadRequest } from 'payload'
 
 export async function AuthError(
   req: PayloadRequest,

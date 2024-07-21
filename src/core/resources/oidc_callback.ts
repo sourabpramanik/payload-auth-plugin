@@ -1,4 +1,4 @@
-import type { PayloadRequest } from 'payload/types'
+import type { PayloadRequest } from 'payload'
 import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
 import type { OIDCProviderConfig } from '../../types'
