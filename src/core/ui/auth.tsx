@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button } from '@payloadcms/ui/elements/Button'
-import { redirect } from 'next/navigation'
 import { OAuth2ProviderConfig, OIDCProviderConfig } from '../../types'
 import './styles.css'
 
@@ -13,13 +12,8 @@ const AuthFormComponent: React.FC<{ providerId: string; providerName: string }> 
   providerId,
   providerName,
 }) => {
-  const authAction = async () => {
-    'use server'
-
-    redirect(`/api/oauth/authorization/${providerId}`)
-  }
   return (
-    <form key={providerId} action={authAction}>
+    <form key={providerId} action={`/api/oauth/authorization/${providerId}`} method="GET">
       <Button type="submit" size="medium" className="__auth-btn">
         Sign in with {providerName}
       </Button>
