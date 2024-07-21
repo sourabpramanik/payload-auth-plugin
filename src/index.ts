@@ -1,3 +1,4 @@
-export { AuthPlugin } from './plugin'
+import { AuthPlugin } from './plugin'
+
 export * from './types'
-export * from './providers'
+export default AuthPlugin

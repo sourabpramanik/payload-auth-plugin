@@ -5,13 +5,13 @@ import sharp from 'sharp'
 import { buildConfig } from 'payload/config'
 import Users from './collections/Users'
 import Examples from './collections/Examples'
+import AuthPlugin from '../../src'
 import {
-  GitHubAuthProvider,
   GoogleAuthProvider,
-  AuthPlugin,
+  GitHubAuthProvider,
   GitLabAuthProvider,
   AtlassianAuthProvider,
-} from '../../src/index'
+} from '../../src/providers'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
