@@ -39,7 +39,7 @@ Or
 pnpm add plugin-payload-oauth
 ```
 ### Create an OAuth app
-In your desired provider, create an OAuth application. Depending on your provider, you will need to obtain the Client ID and Client Secret from the provider's console or dashboard. Please refer to the [PROVIDERS.md](/PROVIDERS.md) for detailed instructions on configuring a specific provider.
+In your desired provider, create an OAuth application. Depending on your provider, you will need to obtain the Client ID and Client Secret from the provider's console or dashboard. Please refer to the [providers list](https://github.com/sourabpramanik/plugin-payload-oauth?tab=readme-ov-file#list-of-active-and-upcoming-providers) for detailed instructions on configuring a specific provider.
 
 For example: 
 To configure Google OAuth
@@ -102,16 +102,16 @@ Some providers may require additional domain-specific metadata that cannot be ge
 
 ### List of active and upcoming providers:
 
-- [X] Google
-- [X] GitHub
+- [X] Google [Doc](https://developers.google.com/identity/protocols/oauth2)
+- [X] GitHub [Doc](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps)
 - [ ] Auth0
-- [X] Atlassian
+- [X] Atlassian [Doc](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/)
 - [ ] Azure Active Directory
 - [ ] Discord
 - [ ] Dropbox
 - [ ] Facebook
 - [ ] Instagram
-- [X] GitLab
+- [X] GitLab [Doc](https://docs.gitlab.com/ee/api/oauth2.html)
 - [ ] Okta
 - [ ] Slack
 - [ ] Reddit
