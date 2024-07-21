@@ -1,9 +1,11 @@
 {
   "name": "@payloadcms/payload-plugin-oauth",
   "version": "0.1.0",
+  "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
+  "license": "MIT",
   "homepage:": "https://github.com/sourabpramanik/plugin-payload-oauth",
   "repository": "git@github.com:sourabpramanik/plugin-payload-oauth.git",
-  "description": "Oauth plugin for Payload CMS. Supports multiple providres",
+  "description": "Oauth plugin for Payload CMS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "keywords": [
@@ -12,8 +14,13 @@
     "plugin",
     "typescript",
     "react",
-    "auth",
-    "oauth2.0"
+    "oauth",
+    "oauth2.0",
+    "oidc",
+    "google",
+    "github",
+    "gitlab",
+    "atlassian"
   ],
   "exports": {
     ".": {
@@ -38,8 +45,6 @@
     "clean": "rimraf dist && rimraf dev/yarn.lock",
     "prepare": "yarn lint:fix && yarn clean && yarn build"
   },
-  "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
-  "license": "MIT",
   "peerDependencies": {
     "payload": "beta"
   },
