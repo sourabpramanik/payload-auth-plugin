@@ -1,3 +1,6 @@
+
+![cover image](https://github.com/user-attachments/assets/ae16c040-1b16-4b93-8cbe-8337ebb0759c)
+
 > **Note: This plugin supports all versions of Payload CMS starting from version 3.0 and above.**
 
 # PayloadCMS OAuth Plugin
@@ -18,8 +21,8 @@ If you already have a collection with the slug `accounts`, it can cause a confli
 ### Endpoints
 For every provider with different protocols, the endpoints are already configured in the plugin. So any request that comes to the `/api/oauth/**/*` route will be handled by the plugin. 
 
-### Login UI
-Currently, the OAuth login component is added to the login page when you integrate the plugin. It can be customized by passing the relevant configuration options.
+### Signin UI component
+The OAuth signin component is added to the signin page when you integrate the plugin. It can be customized by passing the relevant configuration options.
 
 ## Usage
 
@@ -27,14 +30,16 @@ Currently, the OAuth login component is added to the login page when you integra
 ```bash
 npm install plugin-payload-oauth
 ```
+Or
 ```bash
 yarn add plugin-payload-oauth
 ```
+Or
 ```bash
-pnpm install plugin-payload-oauth
+pnpm add plugin-payload-oauth
 ```
 ### Create an OAuth app
-In your desired provider, create an OAuth application. Depending on your provider, you will need to obtain the Client ID and Client Secret from the provider's console or dashboard. For detailed instructions on configuring a specific provider, please refer to the documentation.
+In your desired provider, create an OAuth application. Depending on your provider, you will need to obtain the Client ID and Client Secret from the provider's console or dashboard. Please refer to the [PROVIDERS.md](/PROVIDERS.md) for detailed instructions on configuring a specific provider.
 
 For example: 
 To configure Google OAuth
@@ -50,7 +55,7 @@ GOOGLE_CLIENT_SECRET=****************************
 ```
 
 ### Configure the plugin
-Import the plugin in `src/payload.config.ts` and set up the provider:
+Import the plugin in `src/payload.config.ts` and set up a provider:
 ```typescript
 // --- rest of the imports
 import { buildConfig } from 'payload/config'
@@ -72,12 +77,21 @@ export default buildConfig({
   ]
 })
 ```
+And that's it, now you can run the dev server, and you can now sign in in with Google.
 
-And that's it, run the dev server and you can now login with Google.
+## Configuration options
+Configuration options allow you to extend the plugin to customize the flow and UI based on your requirements. You can explore the available options to understand their purposes and how to use them.
 
-## Options
-Options allow you to extend the plugin to customize the flow and UI based on your requirements. Explore the available options to understand their purposes and how to use them.
-Coming soon.....
+| Options | Description | Default |
+| --- | --- | :--: |
+| `enabled`: ***boolean*** | Disable or enable plugin | true |
+| `accountsCollection`: ***object*** | Accounts collection configuration parameters | {slug: accounts} |
+| `usersCollectionSlug`: ***string*** | Payload users collection slug | user |
+| `placeAuthComponent`: ***afterLogin or beforeLogin*** | Place the Oauth signin component before or after the Payload's default signin form | afterLogin |
+| `buttonProps`: ***ButtonProps*** | Takes the default props defined by the Payload UI button element | null |
+| `successRedirect`: ***string*** | Specify the path to redirect users on successful signin attempt | `/admin` |
+| `errorRedirect`: ***string*** | Specify the path to redirect users on failed signin attempt | `/admin/login` |
+
 
 ## Open Authorization/OpenID Connect Protocol Based Providers
 This plugin includes multiple pre-configured Open Authorization (OAuth) and OpenID Connect protocol-based providers. These configurations streamline the developer experience and integrations, ensuring the authentication process is seamless and uniform across different providers.
