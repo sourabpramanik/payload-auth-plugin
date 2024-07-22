@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from '@payloadcms/ui/elements/Button'
+import { Button } from '@payloadcms/ui'
 import { OAuth2ProviderConfig, OIDCProviderConfig } from '../../types'
-import './styles.css'
+import styles from './styles.module.css'
 
 interface Props {
   providers: Record<string, OAuth2ProviderConfig | OIDCProviderConfig>
@@ -14,7 +14,7 @@ const AuthFormComponent: React.FC<{ providerId: string; providerName: string }> 
 }) => {
   return (
     <form key={providerId} action={`/api/oauth/authorization/${providerId}`} method="GET">
-      <Button type="submit" size="medium" className="__auth-btn">
+      <Button type="submit" size="medium" className={styles.authBtn}>
         Sign in with {providerName}
       </Button>
     </form>
@@ -23,7 +23,7 @@ const AuthFormComponent: React.FC<{ providerId: string; providerName: string }> 
 
 const AuthGroup: React.FC<Omit<Props, 'placeContent'>> = ({ providers }) => {
   return (
-    <div className="__auth-btn-group">
+    <div className={styles.authBtnGroup}>
       {Object.keys(providers).map(providerId => (
         <AuthFormComponent providerId={providerId} providerName={providers[providerId].name} />
       ))}
@@ -33,15 +33,15 @@ const AuthGroup: React.FC<Omit<Props, 'placeContent'>> = ({ providers }) => {
 
 export const AuthComponent: React.FC<Props> = ({ providers, placeContent }) => {
   return (
-    <div className={`__auth-block ${placeContent}`}>
+    <div className={styles.authBlock}>
       {placeContent === 'afterLogin' && (
-        <div className="__auth-separator">
+        <div className={`${styles.authSeparator} ${styles.authSeparatorAfter}`}>
           <p>Or</p>
         </div>
       )}
       <AuthGroup providers={providers} />
       {placeContent === 'beforeLogin' && (
-        <div className="__auth-separator">
+        <div className={`${styles.authSeparator} ${styles.authSeparatorBefore}`}>
           <p>Or</p>
         </div>
       )}
