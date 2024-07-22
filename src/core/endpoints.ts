@@ -1,5 +1,4 @@
-import type { PayloadRequest } from 'payload/types'
-import type { Endpoint } from 'payload/config'
+import type { Endpoint, PayloadRequest } from 'payload'
 import type { EndpointOptions, OAuth2ProviderConfig, OIDCProviderConfig } from '../types'
 import { GET } from './handlers/GET'
 

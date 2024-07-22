@@ -1,8 +1,8 @@
-import type { PayloadRequest } from 'payload/types'
 import type { UserInfoResponse } from 'oauth4webapi'
 import jwt from 'jsonwebtoken'
-import { getCookieExpiration } from 'payload/auth'
 import { cookies } from 'next/headers'
+import type { PayloadRequest } from 'payload'
+import { getCookieExpiration } from 'payload'
 import type { OAuth2ProviderConfig, OIDCProviderConfig, SessionOptions } from '../../types'
 import { AuthError } from '../error'
 
@@ -99,5 +99,6 @@ export async function oidcSession(
   })
   const successURL = new URL(request.url as string)
   successURL.pathname = successRedirectPath
+  successURL.search = ''
   return Response.redirect(successURL.toString())
 }

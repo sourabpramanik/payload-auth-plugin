@@ -1,6 +1,6 @@
-import type { PayloadRequest } from 'payload/types'
+import type { PayloadRequest } from 'payload'
 import jwt from 'jsonwebtoken'
-import { getCookieExpiration } from 'payload/auth'
+import { getCookieExpiration } from 'payload'
 import { cookies } from 'next/headers'
 import type {
   SessionOptions,
@@ -104,5 +104,6 @@ export async function oauth2Session(
 
   const successURL = new URL(request.url as string)
   successURL.pathname = successRedirectPath
+  successURL.search = ''
   return Response.redirect(successURL.toString())
 }

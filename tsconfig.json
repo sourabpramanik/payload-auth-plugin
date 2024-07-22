@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -21,4 +24,14 @@
   "include": [
     "src/**/*",
   ],
+  "exclude": [
+    "dev",
+    "dist",
+    "build",
+    "tests",
+    "**/*.spec.js",
+    "**/*.spec.ts",
+    "node_modules",
+    ".eslintrc.js"
+  ]
 }
