@@ -1,5 +1,5 @@
 import { createElement } from 'react'
-import type { Plugin } from 'payload'
+import type { Plugin, Config } from 'payload'
 import type {
   EndpointOptions,
   OAuth2ProviderConfig,
@@ -12,7 +12,7 @@ import { AuthComponent } from './core/ui'
 
 export const AuthPlugin =
   (pluginOptions: PluginOptions<OIDCProviderConfig | OAuth2ProviderConfig>): Plugin =>
-  incomingConfig => {
+  (incomingConfig: Config): Config => {
     const config = { ...incomingConfig }
 
     // Default is true
