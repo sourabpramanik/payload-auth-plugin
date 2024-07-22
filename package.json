@@ -1,13 +1,14 @@
 {
   "name": "@payloadcms/payload-plugin-oauth",
   "version": "0.1.0",
+  "type": "module",
   "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
   "license": "MIT",
   "homepage:": "https://github.com/sourabpramanik/plugin-payload-oauth",
   "repository": "git@github.com:sourabpramanik/plugin-payload-oauth.git",
   "description": "Oauth plugin for Payload CMS",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "keywords": [
     "payload",
     "cms",
@@ -24,12 +25,12 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
     },
     "./providers": {
-      "types": "./dist/providers/index.d.ts",
-      "default": "./dist/providers/index.js"
+      "types": "./dist/src/providers/index.d.ts",
+      "default": "./dist/src/providers/index.js"
     }
   },
   "files": [
@@ -38,7 +39,7 @@
   "scripts": {
     "dev": "cd dev && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "build":  "rm -rf dist && rm -rf tsconfig.tsbuildinfo && pnpm build:types && pnpm build:esbuild",
-    "build:esbuild": "node bundle.js",
+    "build:esbuild": "node esbuild.js",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "test": "cd test && jest --config=./jest.config.js",
     "lint": "eslint src",
