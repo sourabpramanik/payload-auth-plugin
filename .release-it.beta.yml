@@ -19,7 +19,7 @@ npm:
 github:
   release: true
   releaseName: "Beta Release ${version}-beta.${increment}"
-  releaseNotes: "auto-generate"
+  releaseNotes: 'auto-generate'
 
 hooks:
   before:init:
