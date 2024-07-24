@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "dev": "cd dev && cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "build":  "rm -rf dist && rm -rf tsconfig.tsbuildinfo && pnpm build:types && pnpm build:esbuild",
+    "build": "rm -rf dist && rm -rf tsconfig.tsbuildinfo && pnpm build:types && pnpm build:esbuild",
     "build:esbuild": "node esbuild.js",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "test": "cd test && jest --config=./jest.config.js",
@@ -48,7 +48,7 @@
     "generate:types": "payload generate:types",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "clean": "rm -rf dist && rm -rf dev/pnpm-lock.yaml",
-    "prepublish": "yarn lint:fix && yarn clean && yarn build"
+    "release:dry": "release-it --dry-run"
   },
   "peerDependencies": {
     "payload": "^3.0.0-beta.60"
@@ -59,6 +59,7 @@
     "@payloadcms/next": "^3.0.0-beta.67",
     "@payloadcms/richtext-lexical": "^3.0.0-beta.67",
     "@payloadcms/ui": "^3.0.0-beta.67",
+    "@release-it/conventional-changelog": "^8.0.1",
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.6",
@@ -80,6 +81,7 @@
     "payload": "^3.0.0-beta.67",
     "prettier": "^2.7.1",
     "react": "^19.0.0-rc-85acf2d195-20240711",
+    "release-it": "^17.6.0",
     "sharp": "^0.33.4",
     "typescript": "^5.4.2"
   },
