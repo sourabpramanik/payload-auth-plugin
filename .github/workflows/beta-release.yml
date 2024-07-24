@@ -15,6 +15,9 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
+    - name: Install the dependencies
+      run: pnpm install
+
     - name: Configure npm for authentication
       run: |
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
