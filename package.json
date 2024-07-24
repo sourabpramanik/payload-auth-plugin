@@ -7,7 +7,7 @@
   "homepage:": "https://github.com/sourabpramanik/plugin-payload-oauth",
   "repository": "git@github.com:sourabpramanik/plugin-payload-oauth.git",
   "description": "Oauth plugin for Payload CMS",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "keywords": [
     "payload",
@@ -31,13 +31,16 @@
     "./providers": {
       "types": "./dist/src/providers/index.d.ts",
       "default": "./dist/src/providers/index.js"
-    }
+    },
+    "./styles": "./dist/src/index.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "cd dev && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "rm -rf dist && rm -rf tsconfig.tsbuildinfo && pnpm build:types && pnpm build:esbuild",
+    "build:esbuild": "node esbuild.mjs",
     "build": "rm -rf dist && rm -rf tsconfig.tsbuildinfo && pnpm build:types && pnpm build:esbuild",
     "build:esbuild": "node esbuild.js",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
@@ -74,7 +77,6 @@
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "esbuild": "0.23.0",
-    "esbuild-css-modules-plugin": "^3.1.2",
     "esbuild-node-externals": "^1.14.0",
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
