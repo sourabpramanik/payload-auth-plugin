@@ -19,7 +19,7 @@ A single user can have multiple accounts, but each account can be associated wit
 If you already have a collection with the slug `accounts`, it can cause a conflict and prevent the plugin from integrating successfully. To avoid this issue, make sure to change the slug before integrating this plugin.
 
 ### Endpoints
-For every provider with different protocols, the endpoints are already configured in the plugin. So any request that comes to the `/api/oauth/**/*` route will be handled by the plugin. 
+For every provider with different protocols, the endpoints are already configured in the plugin. So any request that comes to the `/api/oauth/**/*` route will be handled by the plugin.
 
 ### Signin UI component
 The OAuth signin component is added to the signin page when you integrate the plugin. It can be customized by passing the relevant configuration options.
@@ -41,7 +41,7 @@ pnpm add plugin-payload-oauth
 ### Create an OAuth app
 In your desired provider, create an OAuth application. Depending on your provider, you will need to obtain the Client ID and Client Secret from the provider's console or dashboard. Please refer to the [providers list](https://github.com/sourabpramanik/plugin-payload-oauth?tab=readme-ov-file#list-of-active-and-upcoming-providers) for detailed instructions on configuring a specific provider.
 
-For example: 
+For example:
 To configure Google OAuth
 
 1. Add the callback/redirect URL:
@@ -57,15 +57,17 @@ GOOGLE_CLIENT_SECRET=****************************
 ### Configure the plugin
 Import the plugin in `src/payload.config.ts` and set up a provider:
 ```typescript
-// --- rest of the imports
+
 import { buildConfig } from 'payload/config'
-import AuthPlugin from 'plugin-payload-oauth'
-import { GoogleAuthProvider } from 'plugin-payload-oauth/providers'
+// --- rest of the imports
+import AuthPlugin from '@payloadcms/payload-plugin-oauth'
+import AuthPlugin from '@payloadcms/plugin-payload-oauth/styles'
+import { GoogleAuthProvider } from '@payloadcms/plugin-payload-oauth/providers'
 
 export default buildConfig({
 // --- rest of the config
   plugins: [
-  // --- rest of plugins
+  // --- rest of the plugins
   AuthPlugin({
       providers: [
         GoogleAuthProvider({
