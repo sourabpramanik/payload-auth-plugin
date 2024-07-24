@@ -1,0 +1,76 @@
+git:
+  requireCleanWorkingDir: true
+  requireUpstream: true
+  requireCommits: true
+  addUntrackedFiles: false
+  commit: true
+  commitMessage: "chore: beta release v${version}-beta.${increment}"
+  tag: true
+  tagName: "v${version}-beta.${increment}"
+  push: true
+
+npm:
+  publish: true
+  publishPath: "."
+  publishConfig:
+    registry: "https://registry.npmjs.org/"
+
+  skipChecks: true
+
+github:
+  release: true
+
+  releaseName: "Beta Release ${version}-beta.${increment}"
+  releaseNotes: "auto-generate"
+
+hooks:
+  before:init:
+    - git fetch --all
+    - |
+      if [ "$(git symbolic-ref --short HEAD)" != "beta" ]; then
+
+        echo "Not on beta branch"
+        exit 1
+      fi
+    - git pull origin beta
+
+    - pnpm install
+    - pnpm build
+
+
+plugins:
+  '@release-it/conventional-changelog':
+    infile: './CHANGELOG.md'
+    preset:
+      name: 'conventionalcommits'
+
+      types:
+
+        - { type: 'feat', section: 'Features' }
+        - { type: 'feature', section: 'Features' }
+        - { type: 'fix', section: 'Bug Fixes' }
+        - { type: 'docs', section: 'Documentation' }
+        - { type: 'chore', section: 'Chores' }
+        - { type: 'ref', section: 'Refactor' }
+    writerOpts:
+      commitGroupsSort: |
+        (a, b) => {
+          const groupOrder = ['Features', 'Bug Fixes', 'Chores', 'Documentation', 'Refactor'];
+          return groupOrder.indexOf(a.title) - groupOrder.indexOf(b.title);
+        }
+      commitsSort: |
+        (a, b) => {
+          if (a.scope || b.scope) {
+            if (!a.scope) return -1;
+            if (!b.scope) return 1;
+            return a.scope === b.scope
+              ? a.subject.localeCompare(b.subject)
+              : a.scope.localeCompare(b.scope);
+          }
+          return a.subject.localeCompare(b.subject);
+        }
+
+increment:
+  release: 'beta'
+
+

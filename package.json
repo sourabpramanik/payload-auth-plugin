@@ -1,6 +1,6 @@
 {
   "name": "@payloadcms/payload-plugin-oauth",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "type": "module",
   "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
   "license": "MIT",
@@ -48,7 +48,12 @@
     "generate:types": "payload generate:types",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "clean": "rm -rf dist && rm -rf dev/pnpm-lock.yaml",
-    "release:dry": "release-it --dry-run"
+    "release:dry": "release-it --dry-run",
+    "release:beta": "release-it pre --preReleaseId=beta --npm.tag=beta --config .release-it.beta.yml",
+    "release:beta:dry": "release-it pre --dry-run --preReleaseId=beta --npm.tag=beta --config .release-it.beta.yml",
+    "release:major": "release-it major",
+    "release:minor": "release-it minor",
+    "release:patch": "release-it patch"
   },
   "peerDependencies": {
     "payload": "^3.0.0-beta.60"
