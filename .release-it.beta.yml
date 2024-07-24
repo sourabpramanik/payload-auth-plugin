@@ -1,5 +1,5 @@
 git:
-  requireCleanWorkingDir: true
+  requireCleanWorkingDir: false
   requireUpstream: true
   requireCommits: true
   addUntrackedFiles: false
