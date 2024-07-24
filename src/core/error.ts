@@ -7,7 +7,8 @@ export async function AuthError(
 ): Promise<Response> {
   const url = new URL(req.url as string)
   url.pathname = path
-  url.search = encodeURIComponent(message)
+  url.search = ''
+  url.searchParams.set('error', encodeURIComponent(message))
 
   return Response.redirect(url.toString())
 }
