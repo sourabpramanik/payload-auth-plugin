@@ -1,12 +1,12 @@
 {
-  "name": "payload-plugin-auth",
+  "name": "payload-auth-plugin",
   "version": "0.0.0",
   "type": "module",
   "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
   "license": "MIT",
-  "homepage:": "https://github.com/sourabpramanik/plugin-payload-oauth",
-  "repository": "git@github.com:sourabpramanik/plugin-payload-oauth.git",
-  "description": "Oauth plugin for Payload CMS",
+  "homepage:": "https://github.com/sourabpramanik/payload-auth-plugin",
+  "repository": "git@github.com:sourabpramanik/payload-auth-plugin.git",
+  "description": "Authentication plugin for Payload CMS",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "keywords": [
