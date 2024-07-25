@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       release_type:
-        description: 'Release type (major/minor/patch/beta)'
+        description: 'Release type (major/minor/patch)'
         required: true
         default: 'minor'
         type: choice
