@@ -1,12 +1,12 @@
 {
-  "name": "@payloadcms/payload-plugin-oauth",
-  "version": "0.0.0",
+  "name": "payload-auth-plugin",
+  "version": "0.1.0",
   "type": "module",
   "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
   "license": "MIT",
-  "homepage:": "https://github.com/sourabpramanik/plugin-payload-oauth",
-  "repository": "git@github.com:sourabpramanik/plugin-payload-oauth.git",
-  "description": "Oauth plugin for Payload CMS",
+  "homepage:": "https://github.com/sourabpramanik/payload-auth-plugin",
+  "repository": "git@github.com:sourabpramanik/payload-auth-plugin.git",
+  "description": "Authentication plugin for Payload CMS",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "keywords": [
@@ -50,8 +50,6 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "clean": "rm -rf dist && rm -rf dev/pnpm-lock.yaml",
     "release:dry": "release-it --dry-run",
-    "release:beta": "release-it pre --preReleaseId=beta --npm.tag=beta --config .release-it.beta.yml",
-    "release:beta:dry": "release-it pre --dry-run --preReleaseId=beta --npm.tag=beta --config .release-it.beta.yml",
     "release:major": "release-it major",
     "release:minor": "release-it minor",
     "release:patch": "release-it patch"
