@@ -4,9 +4,9 @@ git:
   requireCommits: true
   addUntrackedFiles: false
   commit: true
-  commitMessage: "chore: beta release v${version}-beta.${increment}"
+  commitMessage: "chore: beta release v${version}"
   tag: true
-  tagName: "v${version}-beta.${increment}"
+  tagName: "v${version}"
   push: true
 
 npm:
@@ -18,7 +18,7 @@ npm:
 
 github:
   release: true
-  releaseName: "Beta Release ${version}-beta.${increment}"
+  releaseName: "Beta Release ${version}"
 
 hooks:
   before:init:
