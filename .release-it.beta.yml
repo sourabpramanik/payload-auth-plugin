@@ -1,12 +1,12 @@
 git:
-  requireCleanWorkingDir: true
+  requireCleanWorkingDir: false
   requireUpstream: true
   requireCommits: true
   addUntrackedFiles: false
   commit: true
-  commitMessage: "chore: beta release v${version}-beta.${increment}"
+  commitMessage: "chore: beta release v${version}"
   tag: true
-  tagName: "v${version}-beta.${increment}"
+  tagName: "v${version}"
   push: true
 
 npm:
@@ -14,39 +14,37 @@ npm:
   publishPath: "."
   publishConfig:
     registry: "https://registry.npmjs.org/"
-
   skipChecks: true
 
 github:
   release: true
+  releaseName: "Beta Release ${version}"
 
-  releaseName: "Beta Release ${version}-beta.${increment}"
-  releaseNotes: "auto-generate"
 
 hooks:
   before:init:
+
     - git fetch --all
+
     - |
       if [ "$(git symbolic-ref --short HEAD)" != "beta" ]; then
-
         echo "Not on beta branch"
+
         exit 1
       fi
     - git pull origin beta
-
     - pnpm install
     - pnpm build
 
-
 plugins:
+
   '@release-it/conventional-changelog':
     infile: './CHANGELOG.md'
     preset:
       name: 'conventionalcommits'
-
       types:
-
         - { type: 'feat', section: 'Features' }
+
         - { type: 'feature', section: 'Features' }
         - { type: 'fix', section: 'Bug Fixes' }
         - { type: 'docs', section: 'Documentation' }
@@ -55,7 +53,9 @@ plugins:
     writerOpts:
       commitGroupsSort: |
         (a, b) => {
+
           const groupOrder = ['Features', 'Bug Fixes', 'Chores', 'Documentation', 'Refactor'];
+
           return groupOrder.indexOf(a.title) - groupOrder.indexOf(b.title);
         }
       commitsSort: |
@@ -70,7 +70,5 @@ plugins:
           return a.subject.localeCompare(b.subject);
         }
 
-increment:
-  release: 'beta'
-
+increment: "conventional:prerelease"
 

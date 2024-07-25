@@ -1,0 +1,35 @@
+name: Release beta
+on: workflow_dispatch
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 8
+
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Install the dependencies
+      run: pnpm install
+
+    - name: Initialise the NPM config
+      run: pnpm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Initialize Git user
+      run: |
+        git config --global user.email "shubpramanik241@gmail.com"
+        git config --global user.name "sourabpramanik"
+
+    - name: Log git status
+      run: git status
+
+    - name: Run release
+      run: pnpm release:beta
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

@@ -1,5 +1,5 @@
 git:
-  requireCleanWorkingDir: true
+  requireCleanWorkingDir: false
   requireUpstream: true
   requireCommits: true
   addUntrackedFiles: false
@@ -19,7 +19,6 @@ npm:
 github:
   release: true
   releaseName: "Release ${version}"
-  releaseNotes: "auto-generate"
 
 hooks:
   before:init:
