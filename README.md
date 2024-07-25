@@ -3,7 +3,7 @@
 
 > **Note: This plugin supports all versions of Payload CMS starting from version 3.0 and above.**
 
-# PayloadCMS OAuth Plugin
+# Authentication plugin for PayloadCMS
 This plugin is designed to simplify the integration of multiple Open Authorization (OAuth) and OpenID Connect providers with Payload CMS. Developers can quickly and effortlessly set up authentication mechanisms by leveraging pre-configured providers.
 
 ## How it works?
@@ -22,21 +22,21 @@ If you already have a collection with the slug `accounts`, it can cause a confli
 For every provider with different protocols, the endpoints are already configured in the plugin. So any request that comes to the `/api/oauth/**/*` route will be handled by the plugin.
 
 ### Signin UI component
-The OAuth signin component is added to the signin page when you integrate the plugin. It can be customized by passing the relevant configuration options.
+The auth signin component is added to the signin page when you integrate the plugin. It can be customized by passing the relevant configuration options.
 
 ## Usage
 
 ### Install the plugin
 ```bash
-npm install plugin-payload-oauth
+npm install payload-auth-plugin
 ```
 Or
 ```bash
-yarn add plugin-payload-oauth
+yarn add payload-auth-plugin
 ```
 Or
 ```bash
-pnpm add plugin-payload-oauth
+pnpm add payload-auth-plugin
 ```
 ### Create an OAuth app
 In your desired provider, create an OAuth application. Depending on your provider, you will need to obtain the Client ID and Client Secret from the provider's console or dashboard. Please refer to the [providers list](https://github.com/sourabpramanik/plugin-payload-oauth?tab=readme-ov-file#list-of-active-and-upcoming-providers) for detailed instructions on configuring a specific provider.
@@ -60,9 +60,9 @@ Import the plugin in `src/payload.config.ts` and set up a provider:
 
 import { buildConfig } from 'payload/config'
 // --- rest of the imports
-import AuthPlugin from '@payloadcms/payload-plugin-oauth'
-import AuthPlugin from '@payloadcms/plugin-payload-oauth/styles'
-import { GoogleAuthProvider } from '@payloadcms/plugin-payload-oauth/providers'
+import AuthPlugin from 'payload-auth-plugin'
+import AuthPlugin from 'payload-auth-plugin'
+import { GoogleAuthProvider } from 'payload-auth-plugin'
 
 export default buildConfig({
 // --- rest of the config

@@ -1,5 +1,5 @@
 {
-  "name": "@payloadcms/payload-plugin-oauth",
+  "name": "payload-plugin-auth",
   "version": "0.0.0",
   "type": "module",
   "author": "Sourab Pramanik<shubpramanik241@gmail.com>",

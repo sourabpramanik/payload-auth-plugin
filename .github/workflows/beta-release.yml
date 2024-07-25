@@ -1,4 +1,4 @@
-name: Release Beta
+name: Release beta
 
 on:
   push:
@@ -18,10 +18,10 @@ jobs:
     - name: Install the dependencies
       run: pnpm install
 
-    - name: Configure npm for authentication
-      run: |
-        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-        echo "@payloadcms:registry=https://your-custom-registry-url/" >> ~/.npmrc
+    - name: Initialise the NPM config
+      run: pnpm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Initialize Git user
       run: |

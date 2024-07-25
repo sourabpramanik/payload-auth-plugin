@@ -19,7 +19,6 @@ npm:
 github:
   release: true
   releaseName: "Release ${version}"
-  releaseNotes: "auto-generate"
 
 hooks:
   before:init:
