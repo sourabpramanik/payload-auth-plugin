@@ -10,7 +10,13 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 
 import AuthPlugin from '../../../dist/src'
-import { GoogleAuthProvider, DiscordAuthProvider } from '../../../dist/src/providers'
+import {
+  GoogleAuthProvider,
+  GitHubAuthProvider,
+  GitLabAuthProvider,
+  AtlassianAuthProvider,
+  DiscordAuthProvider,
+} from '../../../dist/src/providers'
 import '../../../dist/src/index.css'
 
 const filename = fileURLToPath(import.meta.url)
@@ -36,6 +42,18 @@ export default buildConfig({
         GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
           client_secret: process.env.GOOGLE_CLIENT_SECRET as string,
+        }),
+        GitHubAuthProvider({
+          client_id: process.env.GITHUB_CLIENT_ID as string,
+          client_secret: process.env.GITHUB_CLIENT_SECRET as string,
+        }),
+        GitLabAuthProvider({
+          client_id: process.env.GITLAB_CLIENT_ID as string,
+          client_secret: process.env.GITLAB_CLIENT_SECRET as string,
+        }),
+        AtlassianAuthProvider({
+          client_id: process.env.ATLASSIAN_CLIENT_ID as string,
+          client_secret: process.env.ATLASSIAN_CLIENT_SECRET as string,
         }),
         DiscordAuthProvider({
           client_id: process.env.DISCORD_CLIENT_ID as string,
