@@ -109,7 +109,7 @@ Some providers may require additional domain-specific metadata that cannot be ge
 - [ ] Auth0
 - [X] Atlassian [Doc](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/)
 - [ ] Azure Active Directory
-- [ ] Discord
+- [X] Discord [Doc](https://discord.com/developers/docs/topics/oauth2)
 - [ ] Dropbox
 - [ ] Facebook
 - [ ] Instagram
