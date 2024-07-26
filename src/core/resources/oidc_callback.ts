@@ -1,7 +1,7 @@
 import type { PayloadRequest } from 'payload'
 import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
-import type { OIDCProviderConfig } from '../../types'
+import type { AccountInfo, OIDCProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 import { AuthError } from '../error'
 
@@ -9,7 +9,7 @@ export async function OIDCCallback(
   request: PayloadRequest,
   providerConfig: OIDCProviderConfig,
   errorRedirectPath: string,
-  session_callback: (claims: oauth.UserInfoResponse) => Promise<Response>,
+  session_callback: (claims: AccountInfo) => Promise<Response>,
 ): Promise<Response> {
   const nonce = cookies().get('payload_auth_nonce')
   const code_verifier = cookies().get('payload_auth_code_verifier')
@@ -20,7 +20,7 @@ export async function OIDCCallback(
   cookies().delete('payload_auth_code_verifier')
   cookies().delete('payload_auth_nonce')
 
-  const { client_id, client_secret, issuer, algorithm } = providerConfig
+  const { client_id, client_secret, issuer, algorithm, profile } = providerConfig
   const client: oauth.Client = {
     client_id,
     client_secret,
@@ -72,5 +72,12 @@ export async function OIDCCallback(
   }
 
   const result = await oauth.processUserInfoResponse(as, client, claims.sub, userInfoResponse)
-  return session_callback(result)
+  return session_callback(
+    profile({
+      sub: result.sub,
+      name: result.name as string,
+      email: result.email as string,
+      picture: result.picture as string,
+    }),
+  )
 }

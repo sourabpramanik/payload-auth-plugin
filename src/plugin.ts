@@ -1,17 +1,12 @@
 import { createElement } from 'react'
 import type { Plugin, Config } from 'payload'
-import type {
-  EndpointOptions,
-  OAuth2ProviderConfig,
-  OIDCProviderConfig,
-  PluginOptions,
-} from './types'
+import type { EndpointOptions, OAuthProviderConfig, PluginOptions } from './types'
 import { generateEndpoints } from './core'
 import { generateAccountsCollection } from './core/collections'
 import { AuthComponent } from './core/ui'
 
 export const AuthPlugin =
-  (pluginOptions: PluginOptions<OIDCProviderConfig | OAuth2ProviderConfig>): Plugin =>
+  (pluginOptions: PluginOptions): Plugin =>
   (incomingConfig: Config): Config => {
     const config = { ...incomingConfig }
 
@@ -30,10 +25,7 @@ export const AuthPlugin =
     } = pluginOptions
 
     const providersRecord = providers.reduce(
-      (
-        record: Record<string, OAuth2ProviderConfig | OIDCProviderConfig>,
-        provider: OAuth2ProviderConfig | OIDCProviderConfig,
-      ) => {
+      (record: Record<string, OAuthProviderConfig>, provider: OAuthProviderConfig) => {
         const newRecord = {
           ...record,
           [provider.id]: provider,
@@ -57,7 +49,7 @@ export const AuthPlugin =
     ]
 
     // Add custom endpoints
-    const endpointOptions: EndpointOptions<OAuth2ProviderConfig | OIDCProviderConfig> = {
+    const endpointOptions: EndpointOptions = {
       providers: providersRecord,
       accountsCollection,
       usersCollectionSlug,

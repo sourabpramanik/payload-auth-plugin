@@ -1,12 +1,5 @@
 import type { PayloadRequest } from 'payload'
-import type { UserInfoResponse } from 'oauth4webapi'
-import type {
-  EndpointOptions,
-  Oauth2AccountInfo,
-  OAuth2ProviderConfig,
-  OIDCProviderConfig,
-  SessionOptions,
-} from '../../types'
+import type { AccountInfo, EndpointOptions, SessionOptions } from '../../types'
 import { OAuth2Authorization, OIDCCallback, OIDCAuthorization, OAuth2Callback } from '../resources'
 import { oauth2Session, oidcSession } from '../session'
 import { AuthError } from '../error'
@@ -15,7 +8,7 @@ export function GET(
   request: PayloadRequest,
   resource: string,
   providerId: string,
-  pluginOptions: EndpointOptions<OAuth2ProviderConfig | OIDCProviderConfig>,
+  pluginOptions: EndpointOptions,
 ): Promise<Response> {
   const provider = pluginOptions.providers[providerId]
   if (!provider) {
@@ -23,7 +16,7 @@ export function GET(
   }
 
   const { providers, errorRedirect, ...rest } = pluginOptions
-  const sessionOptions: SessionOptions<OAuth2ProviderConfig | OIDCProviderConfig> = rest
+  const sessionOptions: SessionOptions = rest
   const errorRedirectPath = errorRedirect ?? '/admin/login'
 
   switch (resource) {
@@ -39,20 +32,12 @@ export function GET(
     case 'callback':
       switch (provider.algorithm) {
         case 'oidc':
-          return OIDCCallback(
-            request,
-            provider,
-            errorRedirectPath,
-            (accountInfo: UserInfoResponse) =>
-              oidcSession(request, provider, sessionOptions, accountInfo),
+          return OIDCCallback(request, provider, errorRedirectPath, (accountInfo: AccountInfo) =>
+            oidcSession(request, provider, sessionOptions, accountInfo),
           )
         case 'oauth2':
-          return OAuth2Callback(
-            request,
-            provider,
-            errorRedirectPath,
-            (accountInfo: Oauth2AccountInfo) =>
-              oauth2Session(request, provider, sessionOptions, accountInfo),
+          return OAuth2Callback(request, provider, errorRedirectPath, (accountInfo: AccountInfo) =>
+            oauth2Session(request, provider, sessionOptions, accountInfo),
           )
         default:
           return AuthError(request, errorRedirectPath, 'Invalid provider request')

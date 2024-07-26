@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button } from '@payloadcms/ui'
-import { OAuth2ProviderConfig, OIDCProviderConfig } from '../../types'
+import { OAuthProviderConfig } from '../../types'
 import './styles.css'
 
 interface Props {
-  providers: Record<string, OAuth2ProviderConfig | OIDCProviderConfig>
+  providers: Record<string, OAuthProviderConfig>
   placeContent: 'afterLogin' | 'beforeLogin'
 }
 
