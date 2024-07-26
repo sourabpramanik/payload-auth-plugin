@@ -46,7 +46,7 @@ To configure Google OAuth
 
 1. Add the callback/redirect URL:
 ```bash
-`https://acme.com/api/oauth/callback/google`
+https://[yourdomain]/api/oauth/callback/google
 ```
 2. Get the Client ID and Client Secret and set the `.env` variables in your Payload CMS application:
 ```text
@@ -84,6 +84,8 @@ export default buildConfig({
 })
 ```
 And that's it, now you can run the dev server, and you can now sign in in with Google.
+
+> Checkout [examples](https://github.com/sourabpramanik/payload-auth-plugin/tree/main/example) for better understanding
 
 ## Configuration options
 Configuration options allow you to extend the plugin to customize the flow and UI based on your requirements. You can explore the available options to understand their purposes and how to use them.
