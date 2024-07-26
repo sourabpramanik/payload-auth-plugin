@@ -1,7 +1,7 @@
 import type { PayloadRequest } from 'payload'
 import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
-import type { Oauth2AccountInfo, OAuth2ProviderConfig } from '../../types'
+import type { AccountInfo, OAuth2ProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 import { AuthError } from '../error'
 
@@ -9,7 +9,7 @@ export async function OAuth2Callback(
   request: PayloadRequest,
   provider: OAuth2ProviderConfig,
   errorRedirectPath: string,
-  session_callback: (accountInfo: Oauth2AccountInfo) => Promise<Response>,
+  session_callback: (accountInfo: AccountInfo) => Promise<Response>,
 ): Promise<Response> {
   const state = cookies().get('payload_auth_state')
   const code_verifier = cookies().get('payload_auth_code_verifier')
@@ -57,11 +57,5 @@ export async function OAuth2Callback(
 
   const userInfoResponse = await oauth.userInfoRequest(as, client, token_result.access_token)
   const userInfo = await userInfoResponse.json()
-
-  return session_callback({
-    sub: userInfo[provider.uidField],
-    name: userInfo[provider.nameField],
-    email: userInfo[provider.emailField],
-    picture: userInfo[provider.pictureField],
-  })
+  return session_callback(provider.profile(userInfo))
 }

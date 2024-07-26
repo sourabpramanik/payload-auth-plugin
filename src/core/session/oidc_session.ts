@@ -1,16 +1,15 @@
-import type { UserInfoResponse } from 'oauth4webapi'
 import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 import type { PayloadRequest } from 'payload'
 import { getCookieExpiration } from 'payload'
-import type { OAuth2ProviderConfig, OIDCProviderConfig, SessionOptions } from '../../types'
+import type { AccountInfo, OIDCProviderConfig, SessionOptions } from '../../types'
 import { AuthError } from '../error'
 
 export async function oidcSession(
   request: PayloadRequest,
   providerConfig: OIDCProviderConfig,
-  sessionOptions: SessionOptions<OAuth2ProviderConfig>,
-  accountInfo: UserInfoResponse,
+  sessionOptions: SessionOptions,
+  accountInfo: AccountInfo,
 ): Promise<Response> {
   const { payload } = request
   const { usersCollectionSlug, accountsCollection, successRedirect, errorRedirect } = sessionOptions

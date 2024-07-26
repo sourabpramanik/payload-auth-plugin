@@ -19,11 +19,12 @@
 .authBtnGroup{
   display: flex;
   flex-direction: column;
-  gap: 0.7em;
+  gap: 0.9em;
   width: 100%
 }
 
 .authBtn{
   width: 100%;
-  margin: 0
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
 }

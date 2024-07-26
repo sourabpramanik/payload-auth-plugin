@@ -46,7 +46,7 @@ To configure Google OAuth
 
 1. Add the callback/redirect URL:
 ```bash
-[your_domain]/api/oauth/callback/google
+https://[yourdomain]/api/oauth/callback/google
 ```
 2. Get the Client ID and Client Secret and set the `.env` variables in your Payload CMS application:
 ```text
@@ -59,16 +59,20 @@ Import the plugin in `src/payload.config.ts` and set up a provider:
 ```typescript
 
 import { buildConfig } from 'payload/config'
+
 // --- rest of the imports
+
 import AuthPlugin from 'payload-auth-plugin'
-import AuthPlugin from 'payload-auth-plugin'
-import { GoogleAuthProvider } from 'payload-auth-plugin'
+import 'payload-auth-plugin/styles'
+import { GoogleAuthProvider } from 'payload-auth-plugin/providers'
 
 export default buildConfig({
-// --- rest of the config
+  // --- rest of the config
+
   plugins: [
   // --- rest of the plugins
-  AuthPlugin({
+
+    AuthPlugin({
       providers: [
         GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
@@ -80,6 +84,8 @@ export default buildConfig({
 })
 ```
 And that's it, now you can run the dev server, and you can now sign in in with Google.
+
+> Checkout [examples](https://github.com/sourabpramanik/payload-auth-plugin/tree/main/example) for better understanding
 
 ## Configuration options
 Configuration options allow you to extend the plugin to customize the flow and UI based on your requirements. You can explore the available options to understand their purposes and how to use them.
@@ -109,7 +115,7 @@ Some providers may require additional domain-specific metadata that cannot be ge
 - [ ] Auth0
 - [X] Atlassian [Doc](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/)
 - [ ] Azure Active Directory
-- [ ] Discord
+- [X] Discord [Doc](https://discord.com/developers/docs/topics/oauth2)
 - [ ] Dropbox
 - [ ] Facebook
 - [ ] Instagram

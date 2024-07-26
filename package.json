@@ -1,7 +1,6 @@
 {
   "name": "payload-auth-plugin",
   "version": "0.1.0",
-  "type": "module",
   "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
   "license": "MIT",
   "homepage:": "https://github.com/sourabpramanik/payload-auth-plugin",
@@ -58,20 +57,13 @@
     "payload": "^3.0.0-beta.60"
   },
   "devDependencies": {
-    "@payloadcms/db-mongodb": "^3.0.0-beta.67",
-    "@payloadcms/eslint-config": "^1",
-    "@payloadcms/next": "^3.0.0-beta.67",
-    "@payloadcms/richtext-lexical": "^3.0.0-beta.67",
     "@payloadcms/ui": "^3.0.0-beta.67",
     "@release-it/conventional-changelog": "^8.0.1",
-    "@swc/jest": "^0.2.36",
-    "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/react": "^18.2.78",
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@typescript-eslint/parser": "5.12.1",
     "cross-env": "^7.0.3",
-    "dotenv": "^8.2.0",
     "esbuild": "0.23.0",
     "esbuild-node-externals": "^1.14.0",
     "eslint": "^8.19.0",

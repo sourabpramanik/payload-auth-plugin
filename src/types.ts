@@ -1,5 +1,19 @@
 import type { AuthorizationServer } from 'oauth4webapi'
-import type { ButtonHTMLAttributes } from 'react'
+import type { Button } from '@payloadcms/ui'
+
+export interface AccountInfo {
+  sub: string
+  name: string
+  picture: string
+  email: string
+}
+
+interface BaseConfig {
+  id: string
+  name: string
+  scope: string
+  profile: (profile: Record<string, string | number | boolean | object>) => AccountInfo
+}
 
 export interface ProviderConfig {
   /*
@@ -15,38 +29,31 @@ export interface ProviderConfig {
    */
   params?: Record<string, string>
 }
-export interface OIDCProviderConfig extends ProviderConfig {
+
+export interface OIDCProviderConfig extends BaseConfig, ProviderConfig {
   issuer: URL
-  id: string
-  name: string
   algorithm: 'oidc'
-  scope: string
-}
-export interface OAuth2ProviderConfig extends ProviderConfig {
-  authorization_server: AuthorizationServer
-  id: string
-  name: string
-  algorithm: 'oauth2'
-  scope: string
-  nameField: string
-  uidField: string
-  emailField: string
-  pictureField: string
 }
 
-export interface PluginOptions<T extends OAuth2ProviderConfig | OIDCProviderConfig> {
+export interface OAuth2ProviderConfig extends BaseConfig, ProviderConfig {
+  authorization_server: AuthorizationServer
+  algorithm: 'oauth2'
+}
+
+export type OAuthProviderConfig = OIDCProviderConfig | OAuth2ProviderConfig
+
+export interface PluginOptions {
   /* Enable or disable plugin
    * @default true
    */
   enabled?: boolean
   /*
-   * Providers
+   * OAuth Providers
    */
-  providers: T[]
+  providers: OAuthProviderConfig[]
   /*
-   * Accounts are associated with user. A user can have multiple accounts but each account can belong to only one user.
-   * By default the accounts collection created by this plugin will use "accounts" slug.
-   * If there is already a collection with slug "accounts" then provide an alternate slug so that the plugin can generate a new collection using that slug.
+   * Accounts collections slug
+   * @default {slug: "accounts"}
    */
   accountsCollection?: {
     slug: string
@@ -75,24 +82,20 @@ export interface PluginOptions<T extends OAuth2ProviderConfig | OIDCProviderConf
    */
   errorRedirect?: string
 }
-export type EndpointOptions<T extends OAuth2ProviderConfig | OIDCProviderConfig> = Omit<
-  PluginOptions<T>,
+
+export type EndpointOptions = Omit<
+  PluginOptions,
   'providers' | 'buttonProps' | 'placeAuthComponent' | 'enabled'
 > & {
-  providers: Record<string, T>
+  providers: Record<string, OAuthProviderConfig>
 }
-export type SessionOptions<T extends OAuth2ProviderConfig | OIDCProviderConfig> = Omit<
-  PluginOptions<T>,
+
+export type SessionOptions = Omit<
+  PluginOptions,
   'providers' | 'buttonProps' | 'buttonComponent' | 'enabled'
 >
 
-export interface Oauth2AccountInfo {
-  sub: string
-  name?: string
-  email?: string
-  picture?: string
-}
-export interface SigninButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export type SigninButtonProps = typeof Button & {
   /*
    * @default "Signin with {provider}"
    */

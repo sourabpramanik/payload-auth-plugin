@@ -1,4 +1,4 @@
-import type { OIDCProviderConfig, ProviderConfig } from '../types'
+import type { AccountInfo, OIDCProviderConfig, ProviderConfig } from '../types'
 
 type GitLabAuthConfig = ProviderConfig
 
@@ -12,6 +12,14 @@ function GitLabAuthProvider(config: GitLabAuthConfig): OIDCProviderConfig {
     issuer,
     name: 'GitLab',
     algorithm,
+    profile: (profile): AccountInfo => {
+      return {
+        sub: profile.sub as string,
+        name: profile.name as string,
+        email: profile.email as string,
+        picture: profile.picture as string,
+      }
+    },
   }
 }
 
