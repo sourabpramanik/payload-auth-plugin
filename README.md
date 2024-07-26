@@ -46,7 +46,7 @@ To configure Google OAuth
 
 1. Add the callback/redirect URL:
 ```bash
-[your_domain]/api/oauth/callback/google
+`https://acme.com/api/oauth/callback/google`
 ```
 2. Get the Client ID and Client Secret and set the `.env` variables in your Payload CMS application:
 ```text
@@ -59,16 +59,20 @@ Import the plugin in `src/payload.config.ts` and set up a provider:
 ```typescript
 
 import { buildConfig } from 'payload/config'
+
 // --- rest of the imports
+
 import AuthPlugin from 'payload-auth-plugin'
-import AuthPlugin from 'payload-auth-plugin'
-import { GoogleAuthProvider } from 'payload-auth-plugin'
+import 'payload-auth-plugin/styles'
+import { GoogleAuthProvider } from 'payload-auth-plugin/providers'
 
 export default buildConfig({
-// --- rest of the config
+  // --- rest of the config
+
   plugins: [
   // --- rest of the plugins
-  AuthPlugin({
+
+    AuthPlugin({
       providers: [
         GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
