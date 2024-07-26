@@ -10,7 +10,7 @@ git:
   push: true
 
 npm:
-  publish: true
+  publish: false
   publishPath: "."
   publishConfig:
     registry: "https://registry.npmjs.org/"

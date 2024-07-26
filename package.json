@@ -1,6 +1,6 @@
 {
   "name": "payload-auth-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Sourab Pramanik<shubpramanik241@gmail.com>",
   "license": "MIT",
   "homepage:": "https://github.com/sourabpramanik/payload-auth-plugin",
@@ -49,6 +49,7 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "clean": "rm -rf dist && rm -rf dev/pnpm-lock.yaml",
     "release:dry": "release-it --dry-run",
+    "release": "release-it",
     "release:major": "release-it major",
     "release:minor": "release-it minor",
     "release:patch": "release-it patch"
