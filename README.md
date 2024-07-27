@@ -117,7 +117,7 @@ Some providers may require additional domain-specific metadata that cannot be ge
 - [ ] Azure Active Directory
 - [X] Discord [Doc](https://discord.com/developers/docs/topics/oauth2)
 - [ ] Dropbox
-- [ ] Facebook
+- [X] Facebook [Doc](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow)
 - [ ] Instagram
 - [X] GitLab [Doc](https://docs.gitlab.com/ee/api/oauth2.html)
 - [ ] Okta
