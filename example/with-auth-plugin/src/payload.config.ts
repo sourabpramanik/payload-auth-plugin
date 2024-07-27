@@ -15,10 +15,11 @@ import {
   GitHubAuthProvider,
   GitLabAuthProvider,
   AtlassianAuthProvider,
+  FacebookAuthProvider,
   DiscordAuthProvider,
+  SlackAuthProvider,
 } from '../../../dist/src/providers'
 import '../../../dist/src/index.css'
-import { FacebookAuthProvider } from '../../../src/providers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -63,6 +64,10 @@ export default buildConfig({
         FacebookAuthProvider({
           client_id: process.env.FACEBOOK_CLIENT_ID as string,
           client_secret: process.env.FACEBOOK_CLIENT_SECRET as string,
+        }),
+        SlackAuthProvider({
+          client_id: process.env.SLACK_CLIENT_ID as string,
+          client_secret: process.env.SLACK_CLIENT_SECRET as string,
         }),
       ],
     }),

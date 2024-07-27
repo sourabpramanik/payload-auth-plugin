@@ -4,6 +4,7 @@ import GitLabAuthProvider from './gitlab'
 import AtlassianAuthProvider from './atlassian'
 import DiscordAuthProvider from './discord'
 import FacebookAuthProvider from './facebook'
+import SlackAuthProvider from './slack'
 
 export {
   GoogleAuthProvider,
@@ -12,4 +13,5 @@ export {
   AtlassianAuthProvider,
   DiscordAuthProvider,
   FacebookAuthProvider,
+  SlackAuthProvider,
 }
