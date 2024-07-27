@@ -121,7 +121,7 @@ Some providers may require additional domain-specific metadata that cannot be ge
 - [ ] Instagram
 - [X] GitLab [Doc](https://docs.gitlab.com/ee/api/oauth2.html)
 - [ ] Okta
-- [ ] Slack
+- [X] Slack [Doc](https://api.slack.com/authentication)
 - [ ] Reddit
 - [ ] X(Twitter)
 - [ ] Netlify
