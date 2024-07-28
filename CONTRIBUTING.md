@@ -54,5 +54,22 @@ When creating a PR, please ensure:
     - Instructions on how to test the changes.
 3. **Review Process**: Be prepared to engage in the review process. Respond to feedback and make necessary changes.
 
+### Running the Plugin
+
+1. **Clone the Forked Plugin Repository**
+    - Clone the repository you forked from the original project.
+
+2. **Install Packages**
+    - Run `pnpm install` to install all necessary dependencies.
+
+3. **Build and Test the Plugin Locally**
+    - Run the build command `pnpm build` in the root directory. This will generate a `/dist` directory.
+    - Navigate to the example PayloadCMS project at `/example/with-auth-plugin`. This project already imports the plugin from the `/dist` directory.
+    - `cd` into `/example/with-auth-plugin`.
+    - Run the example application using `pnpm dev`.
+
+4. **Building the Plugin**
+    - Building the plugin is necessary to view any changes locally. This ensures that the output generated locally will be the same as the one generated after publishing the plugin.
+
 We appreciate your contributions and look forward to collaborating with you! If you have any questions or need assistance, please don't hesitate to reach out. Cheers!
 
