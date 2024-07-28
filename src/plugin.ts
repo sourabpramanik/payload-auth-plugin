@@ -61,15 +61,14 @@ export const AuthPlugin =
     // Add auth component to login page
     config.admin.components = {
       ...(config.admin.components ?? {}),
-      [authComponentPos]: (
-        (config.admin.components && config.admin.components[authComponentPos]) ??
-        []
-      ).concat(() =>
-        createElement(AuthComponent, {
-          providers: providersRecord,
-          placeContent: authComponentPos,
-        }),
-      ),
+      [authComponentPos]: [
+        ...(config.admin.components?.[authComponentPos] ?? []),
+        () =>
+          createElement(AuthComponent, {
+            providers: providersRecord,
+            placeContent: authComponentPos,
+          }),
+      ],
     }
     return config
   }

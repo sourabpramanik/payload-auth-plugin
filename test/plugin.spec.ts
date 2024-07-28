@@ -1,7 +1,7 @@
 import type { Server } from 'http'
 import mongoose from 'mongoose'
 import payload from 'payload'
-//import { start } from './src/server'
+// import { start } from './src/server'
 import { nextDev } from 'next/dist/cli/next-dev.js'
 
 describe('Plugin tests', () => {
@@ -11,7 +11,7 @@ describe('Plugin tests', () => {
 
   beforeAll(async () => {
     console.log('run start')
-    //await start({ local: true })
+    // await start({ local: true })
     nextDev({ port: 3000 }, 'default', '../dev')
   })
 
