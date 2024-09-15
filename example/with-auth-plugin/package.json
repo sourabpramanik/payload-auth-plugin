@@ -18,12 +18,13 @@
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
+    "@payloadcms/ui": "beta",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "next": "15.0.0-canary.104",
     "payload": "beta",
-    "react": "^19.0.0-rc-06d0b89e-20240801",
-    "react-dom": "^19.0.0-rc-06d0b89e-20240801",
+    "react": "19.0.0-rc-06d0b89e-20240801",
+    "react-dom": "19.0.0-rc-06d0b89e-20240801",
     "sharp": "0.32.6"
   },
   "devDependencies": {
