@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken'
-import { cookies } from 'next/headers'
 import type { PayloadRequest } from 'payload'
 import { getCookieExpiration } from 'payload'
 import type { AccountInfo, OIDCProviderConfig, SessionOptions } from '../../types'
@@ -89,15 +88,27 @@ export async function oidcSession(
     expiresIn: new Date(expiration).getTime(),
   })
 
-  cookies().set(`${payload.config.cookiePrefix}-token`, token, {
-    path: '/',
-    httpOnly: true,
-    expires: expiration,
-    secure: false,
-    sameSite: 'lax',
-  })
+  const cookies: string[] = []
+  cookies.push(
+    `${payload.config.cookiePrefix}-token=${token};Path=/;HttpOnly;SameSite=lax;Expires=${expiration.toString()}`,
+  )
+  cookies.push(`__session-oauth-nonce='';Path=/;HttpOnly;SameSite=lax;Expires=0`)
+  cookies.push(`__session-code-verifier='';Path=/;HttpOnly;SameSite=lax;Expires=0`)
+
   const successURL = new URL(request.url as string)
   successURL.pathname = successRedirectPath
   successURL.search = ''
-  return Response.redirect(successURL.toString())
+
+  const res = new Response(null, {
+    status: 302,
+    headers: {
+      Location: successURL.href,
+    },
+  })
+
+  cookies.forEach(cookie => {
+    res.headers.append('Set-Cookie', cookie)
+  })
+
+  return res
 }

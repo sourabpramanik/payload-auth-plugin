@@ -1,6 +1,5 @@
 import * as oauth from 'oauth4webapi'
 import type { PayloadRequest } from 'payload'
-import { cookies } from 'next/headers'
 import type { OIDCProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 
@@ -24,6 +23,7 @@ export async function OIDCAuthorization(
     .discoveryRequest(issuer, { algorithm })
     .then(response => oauth.processDiscoveryResponse(issuer, response))
 
+  const cookies: string[] = []
   const cookieMaxage = new Date(Date.now() + 300 * 1000)
 
   const authorizationURL = new URL(as.authorization_endpoint!) // eslint-disable-line
@@ -37,19 +37,24 @@ export async function OIDCAuthorization(
   if (as.code_challenge_methods_supported?.includes('S256') !== true) {
     const nonce = oauth.generateRandomNonce()
     authorizationURL.searchParams.set('nonce', nonce)
-
-    cookies().set('payload_auth_nonce', nonce, {
-      expires: cookieMaxage,
-      path: '/',
-      httpOnly: true,
-    })
+    cookies.push(
+      `__session-oauth-nonce=${nonce};Path=/;HttpOnly;SameSite=lax;Expires=${cookieMaxage.toString()}`,
+    )
   }
+  cookies.push(
+    `__session-code-verifier=${code_verifier};Path=/;HttpOnly;SameSite=lax;Expires=${cookieMaxage.toString()}`,
+  )
 
-  cookies().set('payload_auth_code_verifier', code_verifier, {
-    expires: cookieMaxage,
-    path: '/',
-    httpOnly: true,
+  const res = new Response(null, {
+    status: 302,
+    headers: {
+      Location: authorizationURL.href,
+    },
   })
 
-  return Response.redirect(authorizationURL.href)
+  cookies.forEach(cookie => {
+    res.headers.append('Set-Cookie', cookie)
+  })
+
+  return res
 }
