@@ -138,3 +138,6 @@ Ordered according to the priority
 - Support magic link [Feat] ⚙
 - Support Passkey sign-in [Feat]❓
 - Support front-end authentication [Feat]❓
+
+## 🤝 Contributing
+If you want to add contributions to this repository, please follow the instructions in [contributing.md](./CONTRIBUTING.md).
