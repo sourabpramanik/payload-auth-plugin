@@ -37,7 +37,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "cd dev && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev": "cd example/with-auth-plugin && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "build": "rm -rf dist && rm -rf tsconfig.tsbuildinfo && pnpm build:types && pnpm build:esbuild",
     "build:esbuild": "node esbuild.mjs",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
