@@ -7,7 +7,7 @@ function SlackAuthProvider(config: GoogleAuthConfig): OIDCProviderConfig {
     ...config,
     id: 'slack',
     scope: 'openid email profile',
-    issuer: new URL('https://slack.com'),
+    issuer: 'https://slack.com',
     name: 'Slack',
     algorithm: 'oidc',
     profile: (profile): AccountInfo => {
