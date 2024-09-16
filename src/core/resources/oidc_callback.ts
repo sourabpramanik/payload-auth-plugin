@@ -29,10 +29,11 @@ export async function OIDCCallback(
 
   const current_url = new URL(request.url as string)
   const callback_url = getCallbackURL(request)
+  const issuer_url = new URL(issuer)
 
   const as = await oauth
-    .discoveryRequest(issuer, { algorithm })
-    .then(response => oauth.processDiscoveryResponse(issuer, response))
+    .discoveryRequest(issuer_url, { algorithm })
+    .then(response => oauth.processDiscoveryResponse(issuer_url, response))
 
   const params = oauth.validateAuthResponse(as, client, current_url)
 

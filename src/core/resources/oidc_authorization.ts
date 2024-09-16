@@ -18,10 +18,10 @@ export async function OIDCAuthorization(
     client_secret,
     token_endpoint_auth_method: 'client_secret_basic',
   }
-
+  const issuer_url = new URL(issuer)
   const as = await oauth
-    .discoveryRequest(issuer, { algorithm })
-    .then(response => oauth.processDiscoveryResponse(issuer, response))
+    .discoveryRequest(issuer_url, { algorithm })
+    .then(response => oauth.processDiscoveryResponse(issuer_url, response))
 
   const cookies: string[] = []
   const cookieMaxage = new Date(Date.now() + 300 * 1000)
