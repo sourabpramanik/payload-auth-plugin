@@ -31,7 +31,7 @@ export interface ProviderConfig {
 }
 
 export interface OIDCProviderConfig extends BaseConfig, ProviderConfig {
-  issuer: URL
+  issuer: string
   algorithm: 'oidc'
 }
 
