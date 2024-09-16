@@ -232,6 +232,7 @@ demo/files
 
 # Ignore build folder
 build
+tsconfig.tsbuildinfo
 
 # Ignore built components
 components/index.js
