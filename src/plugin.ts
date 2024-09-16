@@ -1,11 +1,10 @@
-'use server'
 import type { EndpointOptions, OAuthProviderConfig, PluginOptions } from './types'
 import { generateEndpoints } from './core'
 import { generateAccountsCollection } from './core/collections'
 import type { Config } from 'payload'
 
 export const adminAuthPlugin =
-  async (pluginOptions: PluginOptions) =>
+  (pluginOptions: PluginOptions) =>
   (incomingConfig: Config): Config => {
     const config = { ...incomingConfig }
 
@@ -57,19 +56,19 @@ export const adminAuthPlugin =
     config.endpoints = [...(config.endpoints ?? []), ...generateEndpoints(endpointOptions)]
 
     // Add auth component to login page
-    config.admin.components = {
-      ...(config.admin.components ?? {}),
-      [authComponentPos]: [
-        ...(config.admin.components?.[authComponentPos] ?? []),
-        {
-          path: 'payload-auth-plugin/client#AuthComponent',
-          clientProps: {
-            providers: providersRecord,
-            placeContent: authComponentPos,
-          },
-        },
-      ],
-    }
+    // config.admin.components = {
+    //   ...(config.admin.components ?? {}),
+    //   [authComponentPos]: [
+    //     ...(config.admin.components?.[authComponentPos] ?? []),
+    //     {
+    //       path: 'payload-auth-plugin/client#AuthComponent',
+    //       clientProps: {
+    //         providers: providersRecord,
+    //         placeContent: authComponentPos,
+    //       },
+    //     },
+    //   ],
+    // }
 
     return config
   }
