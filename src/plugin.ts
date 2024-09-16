@@ -1,12 +1,11 @@
-import { createElement } from 'react'
-import type { Plugin, Config } from 'payload'
+'use server'
 import type { EndpointOptions, OAuthProviderConfig, PluginOptions } from './types'
 import { generateEndpoints } from './core'
 import { generateAccountsCollection } from './core/collections'
-import { AuthComponent } from './core/ui'
+import type { Config } from 'payload'
 
-export const AuthPlugin =
-  (pluginOptions: PluginOptions): Plugin =>
+export const adminAuthPlugin =
+  async (pluginOptions: PluginOptions) =>
   (incomingConfig: Config): Config => {
     const config = { ...incomingConfig }
 
@@ -23,7 +22,6 @@ export const AuthPlugin =
       successRedirect,
       errorRedirect,
     } = pluginOptions
-
     const providersRecord = providers.reduce(
       (record: Record<string, OAuthProviderConfig>, provider: OAuthProviderConfig) => {
         const newRecord = {
@@ -63,12 +61,15 @@ export const AuthPlugin =
       ...(config.admin.components ?? {}),
       [authComponentPos]: [
         ...(config.admin.components?.[authComponentPos] ?? []),
-        () =>
-          createElement(AuthComponent, {
+        {
+          path: 'payload-auth-plugin/client#AuthComponent',
+          clientProps: {
             providers: providersRecord,
             placeContent: authComponentPos,
-          }),
+          },
+        },
       ],
     }
+
     return config
   }
