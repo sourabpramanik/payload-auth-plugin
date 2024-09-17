@@ -1,6 +1,5 @@
 import type { PayloadRequest } from 'payload'
 import * as oauth from 'oauth4webapi'
-import { cookies } from 'next/headers'
 import type { OAuth2ProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 
