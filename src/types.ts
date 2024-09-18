@@ -1,5 +1,4 @@
 import type { AuthorizationServer } from 'oauth4webapi'
-import type { Button } from '@payloadcms/ui'
 
 export interface AccountInfo {
   sub: string
@@ -64,15 +63,6 @@ export interface PluginOptions {
    */
   usersCollectionSlug?: string
   /*
-   * OAuth component position.
-   * @default 'afterLogin'
-   */
-  placeAuthComponent?: 'beforeLogin' | 'afterLogin'
-  /*
-   * Optional signing button props.
-   */
-  buttonProps?: SigninButtonProps
-  /*
    * @default '/admin'
    */
   successRedirect?: string
@@ -94,10 +84,3 @@ export type SessionOptions = Omit<
   PluginOptions,
   'providers' | 'buttonProps' | 'buttonComponent' | 'enabled'
 >
-
-export type SigninButtonProps = typeof Button & {
-  /*
-   * @default "Signin with {provider}"
-   */
-  label?: string
-}

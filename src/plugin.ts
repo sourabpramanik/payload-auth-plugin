@@ -13,14 +13,8 @@ export const adminAuthPlugin =
       return config
     }
 
-    const {
-      accountsCollection,
-      usersCollectionSlug,
-      providers,
-      placeAuthComponent,
-      successRedirect,
-      errorRedirect,
-    } = pluginOptions
+    const { accountsCollection, usersCollectionSlug, providers, successRedirect, errorRedirect } =
+      pluginOptions
     const providersRecord = providers.reduce(
       (record: Record<string, OAuthProviderConfig>, provider: OAuthProviderConfig) => {
         const newRecord = {
@@ -33,7 +27,6 @@ export const adminAuthPlugin =
     )
     const accountsSlug = accountsCollection?.slug ?? 'accounts'
     const usersSlug = usersCollectionSlug ?? 'users'
-    const authComponentPos = placeAuthComponent ?? 'afterLogin'
 
     config.admin = {
       ...(config.admin ?? {}),
@@ -54,21 +47,6 @@ export const adminAuthPlugin =
       errorRedirect,
     }
     config.endpoints = [...(config.endpoints ?? []), ...generateEndpoints(endpointOptions)]
-
-    // Add auth component to login page
-    // config.admin.components = {
-    //   ...(config.admin.components ?? {}),
-    //   [authComponentPos]: [
-    //     ...(config.admin.components?.[authComponentPos] ?? []),
-    //     {
-    //       path: 'payload-auth-plugin/client#AuthComponent',
-    //       clientProps: {
-    //         providers: providersRecord,
-    //         placeContent: authComponentPos,
-    //       },
-    //     },
-    //   ],
-    // }
 
     return config
   }

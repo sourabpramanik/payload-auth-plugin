@@ -15,7 +15,6 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "sourceMap": true,
-    "jsx": "react",
     "esModuleInterop": true,
     "declaration": true,
     "declarationDir": "./dist",
