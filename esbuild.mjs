@@ -28,8 +28,8 @@ async function build() {
   })
   await esbuild.build({
     ...sharedBuildConfig,
-    entryPoints: ['src/client.ts'],
-    outdir: 'dist',
+    entryPoints: ['src/client/index.ts'],
+    outdir: 'dist/client',
   })
 }
 
