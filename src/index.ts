@@ -1,4 +1,3 @@
-import { AuthPlugin } from './plugin'
+import { adminAuthPlugin } from './plugin'
 
-export * from './types'
-export default AuthPlugin
+export { adminAuthPlugin }

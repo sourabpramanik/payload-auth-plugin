@@ -54,7 +54,32 @@ GOOGLE_CLIENT_ID=****************************
 GOOGLE_CLIENT_SECRET=****************************
 ```
 
+### Create a new auth UI component 
+Create a new file `/src/components/Auth/index.ts` to sign in with the chosen providers. 
+```tsx
+import { Button } from '@payloadcms/ui'
+import { signin } from 'payload-auth-plugin/client'
+export const AuthComponent = () => {
+  return (
+    <form
+      action={async () => {
+        'use server'
+        signin('google')
+      }}
+      method="GET"
+      className="w-full"
+    >
+      <Button type="submit" className="w-full !my-0">
+        Sign in with Google
+      </Button>
+    </form>
+  )
+}
+```
+Go ahead and customize the component's look and feel to your needs.
+
 ### Configure the plugin
+
 Import the plugin in `src/payload.config.ts` and set up a provider:
 ```typescript
 
@@ -62,17 +87,24 @@ import { buildConfig } from 'payload/config'
 
 // --- rest of the imports
 
-import AuthPlugin from 'payload-auth-plugin'
-import 'payload-auth-plugin/styles'
+import { adminAuthPlugin } from 'payload-auth-plugin'
 import { GoogleAuthProvider } from 'payload-auth-plugin/providers'
 
 export default buildConfig({
   // --- rest of the config
-
+  admin: {
+    // --- rest of the admin config
+    importMap: {
+      baseDir: path.resolve(dirname),
+    },
+    components: {
+      afterLogin: ['/components/auth#AuthComponent'],
+    },
+  }
   plugins: [
   // --- rest of the plugins
 
-    AuthPlugin({
+    adminAuthPlugin({
       providers: [
         GoogleAuthProvider({
           client_id: process.env.GOOGLE_CLIENT_ID as string,
@@ -83,6 +115,7 @@ export default buildConfig({
   ]
 })
 ```
+
 And that's it, now you can run the dev server, and you can now sign in in with Google.
 
 > Checkout [examples](https://github.com/sourabpramanik/payload-auth-plugin/tree/main/example) for better understanding

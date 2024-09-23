@@ -3,13 +3,12 @@ import type { AccountInfo, OIDCProviderConfig, ProviderConfig } from '../types'
 type GitLabAuthConfig = ProviderConfig
 
 function GitLabAuthProvider(config: GitLabAuthConfig): OIDCProviderConfig {
-  const issuer = new URL('https://gitlab.com')
   const algorithm = 'oidc'
   return {
     ...config,
     id: 'gitlab',
     scope: 'openid email profile',
-    issuer,
+    issuer: 'https://gitlab.com',
     name: 'GitLab',
     algorithm,
     profile: (profile): AccountInfo => {

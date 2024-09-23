@@ -1,6 +1,5 @@
 import type { PayloadRequest } from 'payload'
 import * as oauth from 'oauth4webapi'
-import { cookies } from 'next/headers'
 import type { OAuth2ProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 
@@ -22,6 +21,8 @@ export async function OAuth2Authorization(
   }
 
   const as = authorization_server
+
+  const cookies: string[] = []
   const cookieMaxage = new Date(Date.now() + 300 * 1000)
 
   const authorizationURL = new URL(as.authorization_endpoint!) // eslint-disable-line
@@ -35,19 +36,24 @@ export async function OAuth2Authorization(
   if (as.code_challenge_methods_supported?.includes('S256') !== true) {
     const state = oauth.generateRandomState()
     authorizationURL.searchParams.set('state', state)
-
-    cookies().set('payload_auth_state', state, {
-      expires: cookieMaxage,
-      path: '/',
-      httpOnly: true,
-    })
+    cookies.push(
+      `__session-oauth-state=${state};Path=/;HttpOnly;SameSite=lax;Expires=${cookieMaxage.toString()}`,
+    )
   }
+  cookies.push(
+    `__session-code-verifier=${code_verifier};Path=/;HttpOnly;SameSite=lax;Expires=${cookieMaxage.toString()}`,
+  )
 
-  cookies().set('payload_auth_code_verifier', code_verifier, {
-    expires: cookieMaxage,
-    path: '/',
-    httpOnly: true,
+  const res = new Response(null, {
+    status: 302,
+    headers: {
+      Location: authorizationURL.href,
+    },
   })
 
-  return Response.redirect(authorizationURL.href)
+  cookies.forEach(cookie => {
+    res.headers.append('Set-Cookie', cookie)
+  })
+
+  return res
 }

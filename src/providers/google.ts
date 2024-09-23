@@ -7,7 +7,7 @@ function GoogleAuthProvider(config: GoogleAuthConfig): OIDCProviderConfig {
     ...config,
     id: 'google',
     scope: 'openid email profile',
-    issuer: new URL('https://accounts.google.com'),
+    issuer: 'https://accounts.google.com',
     name: 'Google',
     algorithm: 'oidc',
     profile: (profile): AccountInfo => {

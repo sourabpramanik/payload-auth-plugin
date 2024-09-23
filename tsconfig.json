@@ -10,6 +10,7 @@
     ],
     "target": "ESNext",
     "outDir": "./dist",
+    "rootDir": "./src",
     "allowJs": true,
     "module": "esnext",
     "moduleResolution": "bundler",

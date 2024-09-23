@@ -11,13 +11,13 @@ export function GET(
   pluginOptions: EndpointOptions,
 ): Promise<Response> {
   const provider = pluginOptions.providers[providerId]
-  if (!provider) {
-    throw Error('Invalid provider request')
-  }
-
   const { providers, errorRedirect, ...rest } = pluginOptions
   const sessionOptions: SessionOptions = rest
   const errorRedirectPath = errorRedirect ?? '/admin/login'
+
+  if (!provider) {
+    return AuthError(request, errorRedirectPath, 'Invaild provider requested')
+  }
 
   switch (resource) {
     case 'authorization':

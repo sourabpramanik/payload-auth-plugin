@@ -1,7 +1,5 @@
-dev/tmp
-dev/yarn.lock
-dev/.next
-dev/pnpm-lock.yaml
+example/**/.next
+example/**/pnpm-lock.yaml
 
 # Created by https://www.gitignore.io/api/node,macos,windows,webstorm,sublimetext,visualstudiocode
 
@@ -234,6 +232,7 @@ demo/files
 
 # Ignore build folder
 build
+tsconfig.tsbuildinfo
 
 # Ignore built components
 components/index.js
@@ -245,5 +244,6 @@ dev/generated-schema.graphql
 
 # Ignore dist, no need for git
 dist
+.trunl
 
 dev/src/uploads

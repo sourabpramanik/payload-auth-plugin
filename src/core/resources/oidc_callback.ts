@@ -1,9 +1,9 @@
 import type { PayloadRequest } from 'payload'
-import { cookies } from 'next/headers'
 import * as oauth from 'oauth4webapi'
 import type { AccountInfo, OIDCProviderConfig } from '../../types'
 import { getCallbackURL } from '../utils/cb'
 import { AuthError } from '../error'
+import { parseCookies } from '../utils/cookies'
 
 export async function OIDCCallback(
   request: PayloadRequest,
@@ -11,14 +11,14 @@ export async function OIDCCallback(
   errorRedirectPath: string,
   session_callback: (claims: AccountInfo) => Promise<Response>,
 ): Promise<Response> {
-  const nonce = cookies().get('payload_auth_nonce')
-  const code_verifier = cookies().get('payload_auth_code_verifier')
+  const parsedCookies = parseCookies(request.headers.get('Cookie')!)
+
+  const code_verifier = parsedCookies['__session-code-verifier']
+  const nonce = parsedCookies['__session-oauth-nonce']
 
   if (!code_verifier) {
     throw Error('Invalid session')
   }
-  cookies().delete('payload_auth_code_verifier')
-  cookies().delete('payload_auth_nonce')
 
   const { client_id, client_secret, issuer, algorithm, profile } = providerConfig
   const client: oauth.Client = {
@@ -29,10 +29,11 @@ export async function OIDCCallback(
 
   const current_url = new URL(request.url as string)
   const callback_url = getCallbackURL(request)
+  const issuer_url = new URL(issuer)
 
   const as = await oauth
-    .discoveryRequest(issuer, { algorithm })
-    .then(response => oauth.processDiscoveryResponse(issuer, response))
+    .discoveryRequest(issuer_url, { algorithm })
+    .then(response => oauth.processDiscoveryResponse(issuer_url, response))
 
   const params = oauth.validateAuthResponse(as, client, current_url)
 
@@ -45,7 +46,7 @@ export async function OIDCCallback(
     client,
     params,
     callback_url.toString(),
-    code_verifier.value,
+    code_verifier,
   )
   const challenges = oauth.parseWwwAuthenticateChallenges(response)
 
@@ -57,7 +58,7 @@ export async function OIDCCallback(
     as,
     client,
     response,
-    nonce?.value as string,
+    nonce!,
   )
 
   if (oauth.isOAuth2Error(token_result)) {

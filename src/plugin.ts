@@ -1,12 +1,10 @@
-import { createElement } from 'react'
-import type { Plugin, Config } from 'payload'
 import type { EndpointOptions, OAuthProviderConfig, PluginOptions } from './types'
 import { generateEndpoints } from './core'
 import { generateAccountsCollection } from './core/collections'
-import { AuthComponent } from './core/ui'
+import type { Config } from 'payload'
 
-export const AuthPlugin =
-  (pluginOptions: PluginOptions): Plugin =>
+export const adminAuthPlugin =
+  (pluginOptions: PluginOptions) =>
   (incomingConfig: Config): Config => {
     const config = { ...incomingConfig }
 
@@ -15,15 +13,8 @@ export const AuthPlugin =
       return config
     }
 
-    const {
-      accountsCollection,
-      usersCollectionSlug,
-      providers,
-      placeAuthComponent,
-      successRedirect,
-      errorRedirect,
-    } = pluginOptions
-
+    const { accountsCollection, usersCollectionSlug, providers, successRedirect, errorRedirect } =
+      pluginOptions
     const providersRecord = providers.reduce(
       (record: Record<string, OAuthProviderConfig>, provider: OAuthProviderConfig) => {
         const newRecord = {
@@ -36,7 +27,6 @@ export const AuthPlugin =
     )
     const accountsSlug = accountsCollection?.slug ?? 'accounts'
     const usersSlug = usersCollectionSlug ?? 'users'
-    const authComponentPos = placeAuthComponent ?? 'afterLogin'
 
     config.admin = {
       ...(config.admin ?? {}),
@@ -58,17 +48,5 @@ export const AuthPlugin =
     }
     config.endpoints = [...(config.endpoints ?? []), ...generateEndpoints(endpointOptions)]
 
-    // Add auth component to login page
-    config.admin.components = {
-      ...(config.admin.components ?? {}),
-      [authComponentPos]: [
-        ...(config.admin.components?.[authComponentPos] ?? []),
-        () =>
-          createElement(AuthComponent, {
-            providers: providersRecord,
-            placeContent: authComponentPos,
-          }),
-      ],
-    }
     return config
   }
