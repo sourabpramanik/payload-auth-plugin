@@ -1,4 +1,3 @@
-// storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -9,8 +8,8 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 
-import { adminAuthPlugin } from '../../../src'
-import { GoogleAuthProvider } from '../../../src/providers'
+import { adminAuthPlugin } from '../../../dist'
+import { GoogleAuthProvider } from '../../../dist/providers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,6 +19,9 @@ export default buildConfig({
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      afterLogin: ['/components/Auth#AuthComponent'],
     },
   },
   collections: [Users, Media],
