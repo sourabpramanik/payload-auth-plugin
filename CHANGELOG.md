@@ -1,13 +1,41 @@
 
 
-## 0.3.0 (2024-09-24)
+## [0.3.0](https://github.com/sourabpramanik/payload-auth-plugin/compare/v0.2.0...v0.3.0) (2024-09-24)
+
+
+### Bug Fixes
+
+* updates example ([fc5ff59](https://github.com/sourabpramanik/payload-auth-plugin/commit/fc5ff59e80243ebb62675fd9284a0ce67ac0652a))
+* export ([30de1ce](https://github.com/sourabpramanik/payload-auth-plugin/commit/30de1ceb5b4a8753c9aef886f443fbcb89ea4ed2))
+* rm jsx components ([662b19b](https://github.com/sourabpramanik/payload-auth-plugin/commit/662b19ba6899125a55e201579bf624d1bdcd3874))
+* error handling ([adb46da](https://github.com/sourabpramanik/payload-auth-plugin/commit/adb46da223b637dc41aa8dcdc18b66289583e766))
+* rm async ([280aa82](https://github.com/sourabpramanik/payload-auth-plugin/commit/280aa822af6a0d498bfaf1e0d7d45ea44771d7b9))
+* add root ([c2cbdf3](https://github.com/sourabpramanik/payload-auth-plugin/commit/c2cbdf37e08a3041fa7dcaa35c1a3b9e81d977fe))
+* issuer type ([ae329f8](https://github.com/sourabpramanik/payload-auth-plugin/commit/ae329f8a7d78dfde3aaa39f36d16691b8c783789))
+* build outputs ([cc7c1b0](https://github.com/sourabpramanik/payload-auth-plugin/commit/cc7c1b04f85abf6caccf87046c072e4f2ebfed53))
+* issuer type ([59a8141](https://github.com/sourabpramanik/payload-auth-plugin/commit/59a8141677d4a2c9c3f4c868c34f046d4842ecf8))
+* issuer type ([d02515e](https://github.com/sourabpramanik/payload-auth-plugin/commit/d02515e14cb0c734d6678d09b41d24d49c284dc1))
+* update to support importMap ([1fc0dc9](https://github.com/sourabpramanik/payload-auth-plugin/commit/1fc0dc9c9ae91ddc4878b55b6ced5dbf7f9f9f5b))
+* adds missing payload ui ([872dc44](https://github.com/sourabpramanik/payload-auth-plugin/commit/872dc44248c90e2578106daf46d5ee2ff2948706))
+* dev script ([1f9d3a5](https://github.com/sourabpramanik/payload-auth-plugin/commit/1f9d3a551491a1133447e0d08c218bd04c959bba))
+* replace next cookies with header cookies ([bf095db](https://github.com/sourabpramanik/payload-auth-plugin/commit/bf095db36224c69d1f3e78bd97804cfffae9dc4d))
+* ignore example files ([74cff24](https://github.com/sourabpramanik/payload-auth-plugin/commit/74cff242812c93dc561202bba08ac795cd1cdcb8))
+
+
+### Features
+
+* update build conf ([9e90291](https://github.com/sourabpramanik/payload-auth-plugin/commit/9e90291b7ec4f7cff4160f74c72ad257546c4ac5))
+* adds client functions ([14fad22](https://github.com/sourabpramanik/payload-auth-plugin/commit/14fad2254d56dbca2ba01fee547ccc9d8721190c))
+* update export ([ec0b6ec](https://github.com/sourabpramanik/payload-auth-plugin/commit/ec0b6ec127154415465873f0235e3dd73093187f))
+* adds slack provider ([26f7ebc](https://github.com/sourabpramanik/payload-auth-plugin/commit/26f7ebc3c692f4678ba459a4c822eff106fb9ec4))
+* adds facebook provider ([16726d5](https://github.com/sourabpramanik/payload-auth-plugin/commit/16726d5d4db7a8f98364b3d72552092afbd1d177))
 
 
 ### Chores
 
-* release v0.2.1 ([98634bb](https://github.com/sourabpramanik/payload-auth-plugin/commit/98634bb59c4c839ae9030e1793cce1d5ae9ecf42))
-
-## 0.2.1 (2024-09-23)
+* cleanup ([f858369](https://github.com/sourabpramanik/payload-auth-plugin/commit/f858369fc94a72c1016bc16bfc226542c581eea4))
+* update deps and scripts ([9b2f6dd](https://github.com/sourabpramanik/payload-auth-plugin/commit/9b2f6dd81434cf437908ef77ef8aa39a55e7a184))
+* update deps ([12b39f1](https://github.com/sourabpramanik/payload-auth-plugin/commit/12b39f19e2f997480e9827a14ef67148ce56c21f))
 
 ## 0.2.0 (2024-07-26)
 

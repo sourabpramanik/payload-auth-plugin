@@ -23,13 +23,7 @@ github:
 hooks:
   before:init:
     - git fetch --all
-    - |
-      if [ "$(git symbolic-ref --short HEAD)" != "main" ]; then
-
-        echo "Not on main branch"
-        exit 1
-      fi
-    - git pull origin main
+    - git pull origin
     - pnpm install
     - pnpm build
 
