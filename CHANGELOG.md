@@ -1,5 +1,13 @@
 
 
+## [0.3.1](https://github.com/sourabpramanik/payload-auth-plugin/compare/v0.3.0...v0.3.1) (2024-09-24)
+
+
+### Chores
+
+* release v0.3.0 ([e044241](https://github.com/sourabpramanik/payload-auth-plugin/commit/e044241b730c08eb67cf806a1fb58845a82039ca))
+* release v0.2.1 ([98634bb](https://github.com/sourabpramanik/payload-auth-plugin/commit/98634bb59c4c839ae9030e1793cce1d5ae9ecf42))
+
 ## [0.3.0](https://github.com/sourabpramanik/payload-auth-plugin/compare/v0.2.0...v0.3.0) (2024-09-24)
 
 
