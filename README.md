@@ -128,8 +128,6 @@ Configuration options allow you to extend the plugin to customize the flow and U
 | `enabled`: ***boolean*** | Disable or enable plugin | true |
 | `accountsCollection`: ***object*** | Accounts collection configuration parameters | {slug: accounts} |
 | `usersCollectionSlug`: ***string*** | Payload users collection slug | user |
-| `placeAuthComponent`: ***afterLogin or beforeLogin*** | Place the Oauth signin component before or after the Payload's default signin form | afterLogin |
-| `buttonProps`: ***ButtonProps*** | Takes the default props defined by the Payload UI button element | null |
 | `successRedirect`: ***string*** | Specify the path to redirect users on successful signin attempt | `/admin` |
 | `errorRedirect`: ***string*** | Specify the path to redirect users on failed signin attempt | `/admin/login` |
 
@@ -141,25 +139,15 @@ To get started, you'll need the Client ID and Client Secret tokens, which can be
 
 Some providers may require additional domain-specific metadata that cannot be generalized. In such cases, you'll need to provide these specific details as well.
 
-### List of active and upcoming providers:
+### List of supported providers:
 
-- [X] Google [Doc](https://developers.google.com/identity/protocols/oauth2)
-- [X] GitHub [Doc](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps)
-- [ ] Auth0
-- [X] Atlassian [Doc](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/)
-- [ ] Azure Active Directory
-- [X] Discord [Doc](https://discord.com/developers/docs/topics/oauth2)
-- [ ] Dropbox
-- [X] Facebook [Doc](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow)
-- [ ] Instagram
-- [X] GitLab [Doc](https://docs.gitlab.com/ee/api/oauth2.html)
-- [ ] Okta
-- [X] Slack [Doc](https://api.slack.com/authentication)
-- [ ] Reddit
-- [ ] X(Twitter)
-- [ ] Netlify
-- [ ] Salesforce
-- [ ] LinkedIn
+- Google [Doc](https://developers.google.com/identity/protocols/oauth2)
+- GitHub [Doc](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps)
+- Atlassian [Doc](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/)
+- Discord [Doc](https://discord.com/developers/docs/topics/oauth2)
+- Facebook [Doc](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow)
+- GitLab [Doc](https://docs.gitlab.com/ee/api/oauth2.html)
+- Slack [Doc](https://api.slack.com/authentication)
 
 ## Roadmap
 Ordered according to the priority
@@ -170,7 +158,7 @@ Ordered according to the priority
 - Support SAML/SSO sign-in [Feat] ⚙
 - Support magic link [Feat] ⚙
 - Support Passkey sign-in [Feat]❓
-- Support front-end authentication [Feat]❓
+- Support front-end app authentication [Feat] ⚙
 
 ## 🤝 Contributing
 If you want to add contributions to this repository, please follow the instructions in [contributing.md](./CONTRIBUTING.md).
