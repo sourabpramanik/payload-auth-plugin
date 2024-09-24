@@ -1,5 +1,12 @@
 
 
+## 0.3.0 (2024-09-24)
+
+
+### Chores
+
+* release v0.2.1 ([98634bb](https://github.com/sourabpramanik/payload-auth-plugin/commit/98634bb59c4c839ae9030e1793cce1d5ae9ecf42))
+
 ## 0.2.1 (2024-09-23)
 
 ## 0.2.0 (2024-07-26)
