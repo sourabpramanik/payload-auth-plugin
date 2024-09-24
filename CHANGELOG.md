@@ -1,5 +1,7 @@
 
 
+## 0.3.2 (2024-09-24)
+
 ## [0.3.1](https://github.com/sourabpramanik/payload-auth-plugin/compare/v0.3.0...v0.3.1) (2024-09-24)
 
 
